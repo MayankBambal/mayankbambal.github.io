@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <img src="assets/me.jpg" alt="Mayank Bambal" class="profile-photo">
-  <h1>Mayank Bambal</h1>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mayank Bambal – Portfolio</title>
@@ -11,12 +9,17 @@
 <body>
   <div class="container">
     <header>
-      <h1>Mayank Bambal</h1>
-      <p>Data Scientist | MS Business Analytics &amp; Information Management, Purdue University (Aug 2025)</p>
-      <p>
-        <a href="mailto:mbambal@purdue.edu">mbambal@purdue.edu</a> · 
-        <a href="https://linkedin.com/in/mayankbambal/" target="_blank">linkedin.com/in/mayankbambal</a> · Chicago, IL
-      </p>
+      <div class="header-content">
+        <h1>Mayank Bambal</h1>
+        <p>Data Scientist | MS Business Analytics &amp; Information Management, Purdue University (Aug 2025)</p>
+        <p>
+          <a href="mailto:mbambal@purdue.edu">mbambal@purdue.edu</a> · 
+          <a href="https://linkedin.com/in/mayankbambal/" target="_blank">linkedin.com/in/mayankbambal</a> · Chicago, IL
+        </p>
+      </div>
+      <div class="header-image">
+        <img src="assets/me.jpg" alt="Mayank Bambal" class="profile-photo">
+      </div>
     </header>
 
     <div class="section">
@@ -89,19 +92,32 @@
 
     <div class="section">
       <h2>Projects</h2>
-      <ul>
-        <section>
-          <!-- project banner -->
-          <img src="assets/churn.png" alt="Churn Dashboard" class="project-header">
-          <h1>Customer Churn Forecasting Pipeline</h1>
-          …
-        </section>
-        <li><a href="churn.html">Customer Churn Forecasting Pipeline</a></li>
-        <li><a href="ab-testing.html">Automated A/B Testing Pipeline</a></li>
-        <li><a href="llama-finetune.html">LoRA Fine-Tuning of LLaMA 3.2 3B</a></li>
-        <li><a href="keyword-extraction.html">Scalable Keyword Extraction Pipeline</a></li>
-        <li><a href="npv-dashboard.html">NPV Sensitivity Dashboard</a></li>
-      </ul>
+      <div class="project-card">
+        <img src="assets/churn.png" alt="Churn Dashboard" class="project-header">
+        <div class="project-content">
+          <h3>Customer Churn Forecasting Pipeline</h3>
+          <p>Advanced machine learning pipeline for predicting customer churn using Random Forest and SHAP analysis.</p>
+          <a href="churn.html">View Project →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="assets/ab-testing.png" alt="A/B Testing Pipeline" class="project-header">
+        <div class="project-content">
+          <h3>Automated A/B Testing Pipeline</h3>
+          <p>AWS-based automated A/B testing pipeline reducing analysis time from 3 days to under 4 hours.</p>
+          <a href="ab-testing.html">View Project →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="assets/llama.png" alt="LLaMA Fine-tuning" class="project-header">
+        <div class="project-content">
+          <h3>LoRA Fine-Tuning of LLaMA 3.2 3B</h3>
+          <p>Efficient fine-tuning of large language models using LoRA technique.</p>
+          <a href="llama-finetune.html">View Project →</a>
+        </div>
+      </div>
     </div>
   </div>
 </body>
