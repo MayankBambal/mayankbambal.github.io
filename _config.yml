@@ -1,10 +1,16 @@
 remote_theme: pages-themes/slate@v0.2.0
 plugins:
   - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-github-metadata
 
-title: Slate Theme
-description: A Jekyll theme for GitHub Pages
+title: Mayank Bambal
+description: Software Engineer Portfolio
 
 # Optional configuration
 show_downloads: true
-google_analytics: # Add your Google Analytics tracking ID here if needed 
+google_analytics: # Add your Google Analytics tracking ID here if needed
+
+# Build settings
+markdown: kramdown
+theme: slate 
