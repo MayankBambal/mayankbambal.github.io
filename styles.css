@@ -94,6 +94,7 @@ a:hover::after {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
+  padding-top: calc(4rem + var(--section-padding));
 }
 
 /* ===== Header ===== */
@@ -144,56 +145,73 @@ header p {
 
 /* ===== Navigation ===== */
 .main-nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
   z-index: 1000;
-  margin: 0 calc(-1 * var(--section-padding));
-  padding: 0 var(--section-padding);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .nav-container {
   max-width: var(--max-width);
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.75rem 0;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem var(--section-padding);
 }
 
 .nav-link {
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: var(--border-radius);
+  padding: 0.5rem 0;
   transition: all var(--transition-speed) ease;
   font-size: 0.95rem;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  position: relative;
 }
 
 .nav-icon {
   font-size: 1.2rem;
+  transition: transform var(--transition-speed) ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width var(--transition-speed) ease;
 }
 
 .nav-link:hover {
   color: var(--text-color);
-  background: var(--accent-light);
+}
+
+.nav-link:hover .nav-icon {
   transform: translateY(-2px);
-  border-color: var(--accent-color);
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 .nav-link.active {
   color: var(--accent-color);
-  background: var(--accent-light);
-  border-color: var(--accent-color);
+}
+
+.nav-link.active::after {
+  width: 100%;
 }
 
 /* ===== Sections ===== */
@@ -480,12 +498,7 @@ li:hover::before {
   }
   
   .nav-container {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .nav-link {
-    padding: 0.5rem 1rem;
+    gap: 1.5rem;
   }
 }
 
@@ -520,8 +533,12 @@ li:hover::before {
     grid-template-columns: 1fr;
   }
   
+  .nav-container {
+    gap: 1rem;
+    padding: 0.75rem var(--section-padding);
+  }
+  
   .nav-link {
-    padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
   }
   
@@ -545,16 +562,24 @@ li:hover::before {
   }
   
   .nav-container {
-    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.5rem var(--section-padding);
   }
   
   .nav-link {
-    padding: 0.3rem 0.6rem;
     font-size: 0.85rem;
   }
   
   .nav-icon {
     font-size: 1rem;
+  }
+  
+  .nav-text {
+    display: none;
+  }
+  
+  .nav-link {
+    padding: 0.5rem;
   }
   
   .contact-links {
