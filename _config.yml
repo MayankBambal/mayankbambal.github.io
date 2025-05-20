@@ -1,1 +1,47 @@
+# Site settings
+title: "Mayank Bambal"
+description: "Portfolio of Mayank Bambal – MS candidate in Business Analytics & Information Management at Purdue University"
+email: "mbambal@purdue.edu"
+url: "https://mayankbambal.github.io"  # the base hostname & protocol for your site
+baseurl: ""                            # the subpath of your site, e.g., /repo if used
+
 theme: jekyll-theme-minimal
+
+# Plugins
+gems:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Markdown and Permalinks
+markdown: kramdown
+kramdown:
+  input: GFM
+
+permalink: /:title/
+
+# Layout defaults for pages without explicit front matter
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+
+# Navigation links (supported by jekyll-theme-minimal)
+nav:
+  - title: "Home"
+    url: "/"
+  - title: "About"
+    url: "/about/"
+  - title: "Projects"
+    url: "/projects/"
+  - title: "Contact"
+    url: "/contact/"
+
+# Exclusions
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
