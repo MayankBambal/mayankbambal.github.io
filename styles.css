@@ -143,24 +143,65 @@ header p {
 }
 
 /* ===== Navigation ===== */
-nav {
-  margin: 1.5rem 0;
+.main-nav {
+  position: sticky;
+  top: 0;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  margin: 0 calc(-1 * var(--section-padding));
+  padding: 0 var(--section-padding);
 }
 
-nav a {
-  display: inline-block;
-  margin: 0.5rem 1rem;
-  padding: 0.75rem 1.5rem;
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
   border-radius: var(--border-radius);
-  transition: all var(--transition-speed) var(--transition-bounce);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  transition: all var(--transition-speed) ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  position: relative;
 }
 
-nav a:hover {
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width var(--transition-speed) ease;
+}
+
+.nav-link:hover {
+  color: var(--text-color);
   background: var(--accent-light);
-  transform: translateY(-3px);
-  border-color: var(--accent-color);
+}
+
+.nav-link:hover::after {
+  width: 80%;
+}
+
+.nav-link.active {
+  color: var(--accent-color);
+}
+
+.nav-link.active::after {
+  width: 80%;
 }
 
 /* ===== Sections ===== */
@@ -172,6 +213,7 @@ nav a:hover {
   transition: all var(--transition-speed) ease;
   border: 1px solid var(--border-color);
   backdrop-filter: blur(10px);
+  scroll-margin-top: 4rem;
 }
 
 .section:hover {
@@ -360,6 +402,16 @@ li:hover::before {
   header h1 {
     font-size: 2.5rem;
   }
+  
+  .nav-container {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .nav-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -374,6 +426,15 @@ li:hover::before {
   
   header p {
     font-size: 1rem;
+  }
+  
+  .nav-container {
+    justify-content: space-between;
+  }
+  
+  .nav-link {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
   }
 }
 
