@@ -16,7 +16,7 @@ npm run dev
 
 3. Build for production:
 ```bash
-npm run build
+npm run build -- --stats-error-details
 ```
 
 ## Features

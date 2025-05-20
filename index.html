@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mayank Bambal - Portfolio</title>
     <link rel="stylesheet" href="dist/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
@@ -12,12 +15,13 @@
         <div class="container">
             <div class="navbar-brand">
                 <a class="navbar-item" href="#home">
-                    <strong>Mayank Bambal</strong>
+                    <strong>MB</strong>
                 </a>
             </div>
             <div class="navbar-menu">
                 <div class="navbar-end">
                     <a class="navbar-item" href="#about">About</a>
+                    <a class="navbar-item" href="#experience">Experience</a>
                     <a class="navbar-item" href="#skills">Skills</a>
                     <a class="navbar-item" href="#projects">Projects</a>
                     <a class="navbar-item" href="#contact">Contact</a>
@@ -31,11 +35,19 @@
         <div class="hero-body">
             <div class="container has-text-centered">
                 <h1 class="title is-1">Mayank Bambal</h1>
-                <h2 class="subtitle">Software Engineer & Developer</h2>
+                <h2 class="subtitle">Data Scientist & Software Engineer</h2>
+                <p class="has-text-white-bis mb-6">Building innovative AI solutions and data-driven insights</p>
                 <div class="social-links">
-                    <a href="https://github.com/mayankbambal" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/mayankbambal" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/mayankbambal" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
+            </div>
+        </div>
+        <div class="hero-footer">
+            <div class="container has-text-centered">
+                <a href="#about" class="scroll-down">
+                    <i class="fas fa-chevron-down"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -44,8 +56,8 @@
     <section id="about" class="section">
         <div class="container">
             <h2 class="title is-2 has-text-centered">About Me</h2>
-            <div class="content">
-                <p>I am a Data Scientist and Software Engineer with extensive experience in machine learning, deep learning, and large language models. Currently pursuing my MS in Business Analytics & Information Management at Purdue University, I have a strong track record of developing innovative AI solutions and data-driven insights across various industries.</p>
+            <div class="content has-text-centered">
+                <p class="is-size-5">I am a Data Scientist and Software Engineer with extensive experience in machine learning, deep learning, and large language models. Currently pursuing my MS in Business Analytics & Information Management at Purdue University, I have a strong track record of developing innovative AI solutions and data-driven insights across various industries.</p>
             </div>
         </div>
     </section>
@@ -111,31 +123,31 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="section has-background-light">
+    <section id="skills" class="section">
         <div class="container">
             <h2 class="title is-2 has-text-centered">Skills</h2>
             <div class="columns is-multiline">
                 <div class="column is-4">
                     <div class="card">
                         <div class="card-content">
-                            <h3 class="title is-4">Full Stack Development</h3>
-                            <p>Experience with modern web technologies and frameworks</p>
+                            <h3 class="title is-4">Machine Learning</h3>
+                            <p>Expertise in statistical modeling, deep learning, and large language models</p>
                         </div>
                     </div>
                 </div>
                 <div class="column is-4">
                     <div class="card">
                         <div class="card-content">
-                            <h3 class="title is-4">Web Development</h3>
-                            <p>Proficient in HTML, CSS, JavaScript and modern frameworks</p>
+                            <h3 class="title is-4">Data Engineering</h3>
+                            <p>Proficient in building data pipelines and ETL processes</p>
                         </div>
                     </div>
                 </div>
                 <div class="column is-4">
                     <div class="card">
                         <div class="card-content">
-                            <h3 class="title is-4">Software Architecture</h3>
-                            <p>Designing scalable and maintainable software solutions</p>
+                            <h3 class="title is-4">Cloud & DevOps</h3>
+                            <p>Experience with AWS, Azure, and modern deployment practices</p>
                         </div>
                     </div>
                 </div>
@@ -144,23 +156,39 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section">
+    <section id="projects" class="section has-background-light">
         <div class="container">
             <h2 class="title is-2 has-text-centered">Projects</h2>
-            <div class="carousel">
-                <div class="carousel-cell">
+            <div class="columns is-multiline">
+                <div class="column is-6">
                     <div class="card">
                         <div class="card-content">
-                            <h3 class="title is-4">Project 1</h3>
-                            <p>Description of your first project. Include technologies used and your role.</p>
+                            <h3 class="title is-4">Unstructured Data Extractor</h3>
+                            <p class="subtitle is-6">LLM-powered data extraction pipeline</p>
+                            <div class="content">
+                                <p>Created a data extraction pipeline skeleton using LLMs to automate data extraction from public reports.</p>
+                                <div class="tags">
+                                    <span class="tag is-primary">Python</span>
+                                    <span class="tag is-info">LLM</span>
+                                    <span class="tag is-success">NLP</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-cell">
+                <div class="column is-6">
                     <div class="card">
                         <div class="card-content">
-                            <h3 class="title is-4">Project 2</h3>
-                            <p>Description of your second project. Include technologies used and your role.</p>
+                            <h3 class="title is-4">Airbnb Customer Retention</h3>
+                            <p class="subtitle is-6">Predictive Analytics Project</p>
+                            <div class="content">
+                                <p>Predicted host attrition using ensemble models to inform targeted retention strategies.</p>
+                                <div class="tags">
+                                    <span class="tag is-primary">Python</span>
+                                    <span class="tag is-info">Machine Learning</span>
+                                    <span class="tag is-success">Data Analysis</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -169,14 +197,14 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section has-background-light">
+    <section id="contact" class="section">
         <div class="container">
             <h2 class="title is-2 has-text-centered">Contact</h2>
             <div class="content has-text-centered">
-                <p>Feel free to reach out to me at <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                <p class="is-size-5 mb-6">Feel free to reach out to me at <a href="mailto:mbambal@purdue.edu">mbambal@purdue.edu</a></p>
                 <div class="social-links">
-                    <a href="https://github.com/mayankbambal" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/mayankbambal" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/mayankbambal" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </div>

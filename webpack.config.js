@@ -14,8 +14,30 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                includePaths: [path.resolve(__dirname, 'node_modules')]
+              }
+            }
+          }
         ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
       },
     ],
   },
@@ -24,4 +46,10 @@ module.exports = {
       filename: 'styles.css',
     }),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.json'],
+    alias: {
+      '~': path.resolve(__dirname, 'node_modules')
+    }
+  },
 }; 
