@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayank Bambal | Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Mayank Bambal</h1>
+      <p>Chicago, IL &nbsp;|&nbsp; (765) 767-1067 &nbsp;|&nbsp; <a href="mailto:mbambal@purdue.edu">mbambal@purdue.edu</a> &nbsp;|&nbsp; <a href="https://linkedin.com/in/mayankbambal/" target="_blank">LinkedIn</a></p>
+    </div>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills-certifications">Skills & Certifications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <main class="container">
+    <section id="education">
+      <h2>Education</h2>
+      <ul>
+        <li>
+          <strong>Purdue University, Daniels School of Business</strong>, West Lafayette, IN<br>
+          MS in Business Analytics & Information Management, <em>August 2025</em>
+        </li>
+        <li>
+          <strong>Indian Institute of Technology</strong>, Indore, India<br>
+          Bachelor of Technology in Mechanical Engineering, <em>May 2019</em>
+        </li>
+      </ul>
+    </section>
+
+    <section id="experience">
+      <h2>Data Science Experience</h2>
+
+      <article>
+        <h3>Data Science Intern (Industry Practicum), CIBC USA</h3>
+        <p><em>Chicago, IL | January 2025 – May 2025</em></p>
+        <ul>
+          <li>Developed an LLM-powered data cleaning and extraction pipeline to transform key information from private financial reports, cutting manual effort by 60% and improving data accuracy.</li>
+          <li>Added an LLM-driven validation step that contextually flags incorrect data extractions, reducing manual QA work by 30%.</li>
+          <li>Built a RAG-based Q&A system using Azure AI Search and Azure AI Foundry, delivering context-aware insights from company filings and cutting compliance reporting time by 40%.</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Associate 1 (Data Scientist 2), Accordion India</h3>
+        <p><em>Hyderabad, India | September 2022 – July 2024</em></p>
+        <ul>
+          <li>Led a churn-reduction effort on Databricks, training a Random Forest model and using SHAP to reveal key attrition drivers, reducing churn by 5% YoY.</li>
+          <li>Developed a live KPI dashboard using Databricks SQL and Power BI with automated daily email alerts, increasing operational efficiency by 3%.</li>
+          <li>Built an automated claims processing pipeline using Spark OCR and time-series anomaly detection, enabling targeted interventions that recovered ~1% annual revenue.</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Analyst 2 (Data Scientist 1), Accordion India</h3>
+        <p><em>Hyderabad, India | September 2021 – September 2022</em></p>
+        <ul>
+          <li>Built an automated A/B testing pipeline on AWS (S3, Glue, EMR, Lambda, Step Functions), reducing analysis time from 3 days to under 4 hours.</li>
+          <li>Created Spark/Python workflows for statistical tests and loaded results into Redshift, powering Tableau dashboards and boosting campaign conversion by 12%.</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Associate Consultant (Senior Data Analyst), Capgemini Invent</h3>
+        <p><em>Mumbai, India | October 2020 – September 2021</em></p>
+        <ul>
+          <li>Replaced a lexicon-based sentiment classifier with a fine-tuned BERT model, improving sentiment analysis accuracy by 13%.</li>
+          <li>Engineered an end-to-end keyword extraction pipeline on Azure Synapse Spark and visualized insights in Power BI dashboards.</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Senior Analyst (Data Analyst), Capgemini Invent</h3>
+        <p><em>Mumbai, India | July 2019 – October 2020</em></p>
+        <ul>
+          <li>Co-developed Azure Data Factory pipelines and Python Azure Functions to ingest 100K+ daily Amazon bestseller rankings into Delta Lake, cutting delivery time by 80%.</li>
+          <li>Prepared curated data tables and DAX measures in Power BI with role-level security, enabling category managers to monitor ranking bursts and sentiment shifts.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="skills-certifications">
+      <h2>Skills & Certifications</h2>
+      <h3>Core Competencies</h3>
+      <p>Statistical Modeling, Data Wrangling, Data Visualization, Experimentation, Model Deployment, MLOps, NLP, Explainable AI, Generative AI, RAG, Autonomous AI Agents, Communication, Critical Thinking, Problem Solving, Data Storytelling, Domain Expertise.</p>
+      <h3>Tools & Technologies</h3>
+      <p>Python, SQL, Scikit-Learn, TensorFlow, PyTorch, PySpark, Pandas, NumPy, NLTK, SpaCy, Git, Docker, Tableau, Power BI, Excel, Azure, AWS, SAS, Databricks.</p>
+      <h3>ML/DL Models</h3>
+      <p>Linear & Logistic Regression, Decision Trees, Random Forest, Bagging & Boosting, Naïve Bayes, KNN, Neural Networks (CNNs, RNNs/LSTMs), Transformers.</p>
+      <h3>Certifications</h3>
+      <ul>
+        <li>Microsoft Certified: Power BI Data Analyst Associate (PL-300)</li>
+        <li>Tableau Desktop Specialist</li>
+        <li>Microsoft Certified: Azure AI Engineer Associate</li>
+        <li>AWS Certified Machine Learning Engineer Associate</li>
+        <li>IBM Data Science Professional Certificate</li>
+        <li>Microsoft Azure Fundamentals (AZ-900), AI Fundamentals (AI-900), Data Fundamentals (DP-900)</li>
+        <li>AWS Certified Cloud Practitioner</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Open-Source Projects</h2>
+      <ul>
+        <li><strong>Unstructured Data Extractor:</strong> Data extraction pipeline skeleton using LLMs to automate report parsing. <a href="#">View on GitHub</a></li>
+        <li><strong>SIC Code Web Scraper:</strong> Scraper for SIC codes of public companies from the SEC website. <a href="#">View on GitHub</a></li>
+        <li><strong>Airbnb Customer Retention Strategy:</strong> Ensemble models predicting host attrition to inform retention strategies. <a href="#">View on GitHub</a></li>
+        <li><strong>Los Angeles Crime Analysis:</strong> Tableau dashboards analyzing crime patterns in LA. <a href="#">View on GitHub</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="container">
+      <p>Contact: <a href="mailto:mbambal@purdue.edu">mbambal@purdue.edu</a> | <a href="https://linkedin.com/in/mayankbambal/" target="_blank">LinkedIn</a></p>
+      <p>&copy; 2025 Mayank Bambal</p>
+    </div>
+  </footer>
+</body>
+</html>
