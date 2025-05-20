@@ -1,15 +1,15 @@
 /* ===== Variables ===== */
 :root {
   /* Colors */
-  --bg-color: #0a0a0a;
-  --bg-secondary: #141414;
-  --text-color: #e0e0e0;
-  --text-secondary: #a0a0a0;
-  --accent-color: #7c4dff;
-  --accent-hover: #9575ff;
-  --accent-light: rgba(124, 77, 255, 0.1);
-  --muted-color: #666666;
-  --border-color: rgba(255, 255, 255, 0.1);
+  --bg-color: #2d232e;
+  --bg-secondary: #474448;
+  --text-color: #f1f0ea;
+  --text-secondary: #e0ddcf;
+  --accent-color: #534b52;
+  --accent-hover: #474448;
+  --accent-light: rgba(83, 75, 82, 0.1);
+  --muted-color: #534b52;
+  --border-color: rgba(224, 221, 207, 0.1);
   
   /* Spacing */
   --section-padding: 2.5rem;
@@ -45,8 +45,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: 
-    radial-gradient(circle at 15% 50%, rgba(124, 77, 255, 0.15), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(124, 77, 255, 0.15), transparent 25%);
+    radial-gradient(circle at 15% 50%, rgba(83, 75, 82, 0.15), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(224, 221, 207, 0.15), transparent 25%);
   background-attachment: fixed;
 }
 
