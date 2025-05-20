@@ -169,6 +169,24 @@ header p {
   display: none;
 }
 
+/* Project Page Styles */
+.back-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.back-link:hover {
+  color: var(--accent-color);
+  transform: translateX(-4px);
+}
+
+.back-link::after {
+  display: none;
+}
+
 /* ===== Navigation ===== */
 .main-nav {
   position: fixed;
