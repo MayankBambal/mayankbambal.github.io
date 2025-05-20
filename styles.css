@@ -79,3 +79,21 @@ li {
   color: var(--muted-color);
   font-size: 0.9rem;
 }
+.profile-photo {
+  display: block;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  border: 2px solid var(--accent-color);
+}
+
+.project-header {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
