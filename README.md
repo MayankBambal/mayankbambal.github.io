@@ -1,22 +1,38 @@
 # Personal Portfolio
 
-This is my personal portfolio website built using the Minimal Jekyll theme for GitHub Pages.
+This is my personal portfolio website built using the devfolio theme, which is based on Bulma, Sass, and Flickity.
 
-## Local Development
+## Setup
 
-To run this site locally:
+1. Install dependencies:
+```bash
+npm install
+```
 
-1. Install Ruby and Bundler
-2. Run `bundle install`
-3. Run `bundle exec jekyll serve`
-4. Visit `localhost:4000` in your browser
+2. Development:
+```bash
+npm run dev
+```
+
+3. Build for production:
+```bash
+npm run build
+```
+
+## Features
+
+- Responsive design using Bulma CSS framework
+- Modern UI with smooth animations
+- Project showcase with Flickity carousel
+- Social media integration
+- Contact section
 
 ## Customization
 
-- Edit `_config.yml` to change site settings
-- Modify `index.md` to update content
-- Customize styles in `assets/css/style.scss`
+- Edit `src/styles.scss` to modify styles
+- Update content in `index.html`
+- Modify carousel settings in `src/index.js`
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License. 
