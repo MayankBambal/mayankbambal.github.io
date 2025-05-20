@@ -5,11 +5,11 @@
   --bg-secondary: #474448;
   --text-color: #f1f0ea;
   --text-secondary: #e0ddcf;
-  --accent-color: #534b52;
-  --accent-hover: #474448;
-  --accent-light: rgba(83, 75, 82, 0.1);
+  --accent-color: #e0ddcf;
+  --accent-hover: #f1f0ea;
+  --accent-light: rgba(224, 221, 207, 0.1);
   --muted-color: #534b52;
-  --border-color: rgba(224, 221, 207, 0.1);
+  --border-color: rgba(224, 221, 207, 0.2);
   
   /* Spacing */
   --section-padding: 2.5rem;
@@ -55,6 +55,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   margin-bottom: 1rem;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 a {
