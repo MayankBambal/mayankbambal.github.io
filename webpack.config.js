@@ -6,17 +6,26 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    clean: true
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              importLoaders: 1
+            }
+          },
           {
             loader: 'sass-loader',
             options: {
+              sourceMap: true,
               sassOptions: {
                 includePaths: [path.resolve(__dirname, 'node_modules')]
               }
@@ -28,7 +37,13 @@ module.exports = {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              importLoaders: 1
+            }
+          }
         ],
       },
       {
@@ -44,6 +59,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'styles.css',
+      chunkFilename: '[id].css'
     }),
   ],
   resolve: {
@@ -52,4 +68,10 @@ module.exports = {
       '~': path.resolve(__dirname, 'node_modules')
     }
   },
+  stats: {
+    all: undefined,
+    errors: true,
+    warnings: true,
+    errorDetails: true
+  }
 }; 

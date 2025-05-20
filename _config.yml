@@ -1,0 +1,10 @@
+remote_theme: pages-themes/slate@v0.2.0
+plugins:
+  - jekyll-remote-theme
+
+title: Slate Theme
+description: A Jekyll theme for GitHub Pages
+
+# Optional configuration
+show_downloads: true
+google_analytics: # Add your Google Analytics tracking ID here if needed 
