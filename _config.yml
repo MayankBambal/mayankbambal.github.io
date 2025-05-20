@@ -1,10 +1,4 @@
 theme: jekyll-theme-slate
-remote_theme: pages-themes/slate@v0.2.0
-plugins:
-  - jekyll-remote-theme
-  - jekyll-seo-tag
-  - jekyll-github-metadata
-
 title: Mayank Bambal
 description: Software Engineer Portfolio
 
