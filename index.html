@@ -24,26 +24,65 @@
 
     <nav class="main-nav">
       <div class="nav-container">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#certifications" class="nav-link">Certifications</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#about" class="nav-link">
+          <span class="nav-icon">👨‍🎓</span>
+          <span class="nav-text">About</span>
+        </a>
+        <a href="#experience" class="nav-link">
+          <span class="nav-icon">💼</span>
+          <span class="nav-text">Experience</span>
+        </a>
+        <a href="#skills" class="nav-link">
+          <span class="nav-icon">🛠️</span>
+          <span class="nav-text">Skills</span>
+        </a>
+        <a href="#certifications" class="nav-link">
+          <span class="nav-icon">🏆</span>
+          <span class="nav-text">Certifications</span>
+        </a>
+        <a href="#projects" class="nav-link">
+          <span class="nav-icon">🚀</span>
+          <span class="nav-text">Projects</span>
+        </a>
+        <a href="#contact" class="nav-link">
+          <span class="nav-icon">📬</span>
+          <span class="nav-text">Contact</span>
+        </a>
       </div>
     </nav>
 
     <div id="about" class="section">
       <h2>Education</h2>
-      <ul>
-        <li><strong>Purdue University</strong>, MS Business Analytics &amp; Information Management, Aug 2025</li>
-        <li><strong>IIT Indore</strong>, B.Tech Mechanical Engineering, May 2019</li>
-      </ul>
+      <div class="education-grid">
+        <div class="education-card">
+          <div class="education-image">
+            <img src="assets/purdue.png" alt="Purdue University" class="school-logo">
+          </div>
+          <div class="education-content">
+            <h3>Purdue University</h3>
+            <p class="degree">MS Business Analytics &amp; Information Management</p>
+            <p class="year">Aug 2025</p>
+            <p class="location">West Lafayette, IN</p>
+          </div>
+        </div>
+
+        <div class="education-card">
+          <div class="education-image">
+            <img src="assets/iit.png" alt="IIT Indore" class="school-logo">
+          </div>
+          <div class="education-content">
+            <h3>IIT Indore</h3>
+            <p class="degree">B.Tech Mechanical Engineering</p>
+            <p class="year">May 2019</p>
+            <p class="location">Indore, India</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="experience" class="section">
       <h2>Data Science Experience</h2>
-      <ul>
+      <div class="experience-grid">
         <li>
           <strong>CIBC USA</strong><br>
           <span class="meta">Data Science Intern (Industry Practicum), Jan 2025–May 2025</span>
@@ -81,22 +120,22 @@
             <li>Prepared Databricks tables and DAX measures for Power BI with row-level security for category managers.</li>
           </ul>
         </li>
-      </ul>
+      </div>
     </div>
 
     <div id="skills" class="section">
       <h2>Skills</h2>
-      <ul>
+      <div class="skills-grid">
         <li><strong>Core Competencies:</strong> Statistical Modeling, Data Wrangling, Data Visualization, Statistical Analysis, Experimentation, Model Deployment, MLOps, Communication, Critical Thinking, Problem Solving, Data Storytelling, Domain Expertise</li>
         <li><strong>Technical Areas:</strong> Machine Learning, Deep Learning, Natural Language Processing, Large Language Models, Explainable AI, Generative AI, Retrieval-Augmented Generation (RAG), Autonomous AI Agents</li>
         <li><strong>Tools & Technologies:</strong> Python, SQL, Scikit-Learn, TensorFlow, PyTorch, PySpark, Pandas, NumPy, NLTK, SpaCy, Git, Docker, Tableau, Power BI, Excel, Azure, AWS, SAS, Databricks</li>
         <li><strong>ML/DL Models:</strong> Linear & Logistic Regression, Decision Trees, Random Forests, Bagging & Boosting, Naïve Bayes, k-Nearest Neighbors, Neural Networks (CNNs, RNNs/LSTMs), Transformers</li>
-      </ul>
+      </div>
     </div>
 
     <div id="certifications" class="section">
       <h2>Certifications</h2>
-      <ul>
+      <div class="certifications-grid">
         <li>Power BI Data Analyst Associate (PL-300)</li>
         <li>Tableau Desktop Specialist</li>
         <li>Azure AI Engineer Associate</li>
@@ -104,46 +143,56 @@
         <li>IBM Data Science Professional Certificate</li>
         <li>Azure Fundamentals (AZ-900), AI Fundamentals (AI-900), Data Fundamentals (DP-900)</li>
         <li>AWS Certified Cloud Practitioner</li>
-      </ul>
+      </div>
     </div>
 
     <div id="projects" class="section">
       <h2>Projects</h2>
-      <div class="project-card">
-        <img src="assets/churn.png" alt="Churn Dashboard" class="project-header">
-        <div class="project-content">
-          <h3>Customer Churn Forecasting Pipeline</h3>
-          <p>Advanced machine learning pipeline for predicting customer churn using Random Forest and SHAP analysis.</p>
-          <a href="churn.html">View Project →</a>
+      <div class="projects-grid">
+        <div class="project-card">
+          <img src="assets/churn.png" alt="Churn Dashboard" class="project-header">
+          <div class="project-content">
+            <h3>Customer Churn Forecasting Pipeline</h3>
+            <p>Advanced machine learning pipeline for predicting customer churn using Random Forest and SHAP analysis.</p>
+            <a href="churn.html">View Project →</a>
+          </div>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="assets/ab-testing.png" alt="A/B Testing Pipeline" class="project-header">
-        <div class="project-content">
-          <h3>Automated A/B Testing Pipeline</h3>
-          <p>AWS-based automated A/B testing pipeline reducing analysis time from 3 days to under 4 hours.</p>
-          <a href="ab-testing.html">View Project →</a>
+        <div class="project-card">
+          <img src="assets/ab-testing.png" alt="A/B Testing Pipeline" class="project-header">
+          <div class="project-content">
+            <h3>Automated A/B Testing Pipeline</h3>
+            <p>AWS-based automated A/B testing pipeline reducing analysis time from 3 days to under 4 hours.</p>
+            <a href="ab-testing.html">View Project →</a>
+          </div>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="assets/llama.png" alt="LLaMA Fine-tuning" class="project-header">
-        <div class="project-content">
-          <h3>LoRA Fine-Tuning of LLaMA 3.2 3B</h3>
-          <p>Efficient fine-tuning of large language models using LoRA technique.</p>
-          <a href="llama-finetune.html">View Project →</a>
+        <div class="project-card">
+          <img src="assets/llama.png" alt="LLaMA Fine-tuning" class="project-header">
+          <div class="project-content">
+            <h3>LoRA Fine-Tuning of LLaMA 3.2 3B</h3>
+            <p>Efficient fine-tuning of large language models using LoRA technique.</p>
+            <a href="llama-finetune.html">View Project →</a>
+          </div>
         </div>
       </div>
     </div>
 
     <div id="contact" class="section">
       <h2>Contact</h2>
-      <p>Feel free to reach out to me through any of the following channels:</p>
-      <ul>
-        <li><a href="mailto:mbambal@purdue.edu">Email</a></li>
-        <li><a href="https://linkedin.com/in/mayankbambal/" target="_blank">LinkedIn</a></li>
-      </ul>
+      <div class="contact-grid">
+        <p>Feel free to reach out to me through any of the following channels:</p>
+        <div class="contact-links">
+          <a href="mailto:mbambal@purdue.edu" class="contact-link">
+            <span class="contact-icon">📧</span>
+            <span>Email</span>
+          </a>
+          <a href="https://linkedin.com/in/mayankbambal/" target="_blank" class="contact-link">
+            <span class="contact-icon">💼</span>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </body>

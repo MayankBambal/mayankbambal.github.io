@@ -13,7 +13,7 @@
   
   /* Spacing */
   --section-padding: 2.5rem;
-  --max-width: 900px;
+  --max-width: 1200px;
   --border-radius: 12px;
   --card-padding: 2rem;
   
@@ -146,7 +146,7 @@ header p {
 .main-nav {
   position: sticky;
   top: 0;
-  background: rgba(10, 10, 10, 0.8);
+  background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
@@ -159,49 +159,41 @@ header p {
   max-width: var(--max-width);
   margin: 0 auto;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem 0;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
 }
 
 .nav-link {
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;
   border-radius: var(--border-radius);
   transition: all var(--transition-speed) ease;
   font-size: 0.95rem;
   font-weight: 500;
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: var(--accent-color);
-  transition: width var(--transition-speed) ease;
+.nav-icon {
+  font-size: 1.2rem;
 }
 
 .nav-link:hover {
   color: var(--text-color);
   background: var(--accent-light);
-}
-
-.nav-link:hover::after {
-  width: 80%;
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
 }
 
 .nav-link.active {
   color: var(--accent-color);
-}
-
-.nav-link.active::after {
-  width: 80%;
+  background: var(--accent-light);
+  border-color: var(--accent-color);
 }
 
 /* ===== Sections ===== */
@@ -352,6 +344,114 @@ li:hover::before {
   border-color: var(--accent-color);
 }
 
+/* ===== Education Section ===== */
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.education-card {
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-speed) ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.education-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.education-image {
+  padding: 2rem;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.school-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  filter: brightness(0.9);
+  transition: all var(--transition-speed) ease;
+}
+
+.education-card:hover .school-logo {
+  filter: brightness(1);
+  transform: scale(1.05);
+}
+
+.education-content {
+  padding: 1.5rem;
+}
+
+.education-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.degree {
+  color: var(--accent-color);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.year, .location {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+/* ===== Grid Layouts ===== */
+.experience-grid,
+.skills-grid,
+.certifications-grid,
+.projects-grid,
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* ===== Contact Section ===== */
+.contact-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-speed) ease;
+}
+
+.contact-link:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
+}
+
+.contact-icon {
+  font-size: 1.2rem;
+}
+
 /* ===== Responsive Design ===== */
 @media (max-width: 1024px) {
   :root {
@@ -378,6 +478,15 @@ li:hover::before {
   .profile-photo {
     margin: 0 auto;
   }
+  
+  .nav-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -403,14 +512,21 @@ li:hover::before {
     font-size: 2.5rem;
   }
   
-  .nav-container {
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  .education-grid,
+  .experience-grid,
+  .skills-grid,
+  .certifications-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
   
   .nav-link {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
+  }
+  
+  .nav-icon {
+    font-size: 1.1rem;
   }
 }
 
@@ -435,6 +551,14 @@ li:hover::before {
   .nav-link {
     padding: 0.3rem 0.6rem;
     font-size: 0.85rem;
+  }
+  
+  .nav-icon {
+    font-size: 1rem;
+  }
+  
+  .contact-links {
+    flex-direction: column;
   }
 }
 
