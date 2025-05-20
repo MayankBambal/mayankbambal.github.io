@@ -21,68 +21,88 @@
     header p { color: var(--muted-color); }
     .section { margin-bottom: var(--section-padding); }
     .section h2 { font-size: 1.75rem; margin-bottom: 1rem; border-bottom: 2px solid var(--accent-color); display: inline-block; }
-    ul { list-style: none; }
+    ul { list-style: none; padding-left: 0; }
     li { margin-bottom: 0.5rem; }
     .meta { color: var(--muted-color); font-size: 0.9rem; }
+    nav a { display: inline-block; margin: 0.5rem 0; }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <h1>Mayank Bambal</h1>
-      <p>Data Scientist | MS Business Analytics & Information Management, Purdue University (Aug 2025)</p>
-      <p><a href="mailto:mbambal@purdue.edu">mbambal@purdue.edu</a> · <a href="https://linkedin.com/in/mayankbambal/" target="_blank">linkedin.com/in/mayankbambal</a> · Chicago, IL</p>
+      <p>Data Scientist | MS Business Analytics &amp; Information Management, Purdue University (Aug 2025)</p>
+      <p>
+        <a href="mailto:mbambal@purdue.edu">mbambal@purdue.edu</a> · 
+        <a href="https://linkedin.com/in/mayankbambal/" target="_blank">linkedin.com/in/mayankbambal</a> · 
+        Chicago, IL
+      </p>
     </header>
+
     <div class="section">
       <h2>Education</h2>
       <ul>
-        <li><strong>Purdue University</strong>, MS Business Analytics & Information Management, Aug 2025</li>
-        <li><strong>IIT Indore</strong>, B.Tech Mechanical Engineering, May 2019</li>
+        <li><strong>Purdue University</strong>, MS Business Analytics &amp; Information Management, Aug 2025</li>
+        <li><strong>IIT Indore</strong>, B.Tech Mechanical Engineering, May 2019</li>
       </ul>
     </div>
+
     <div class="section">
       <h2>Data Science Experience</h2>
       <ul>
         <li>
           <strong>CIBC USA</strong><br>
-          <span class="meta">Data Science Intern, Jan 2025–May 2025 | Chicago, IL</span>
+          <span class="meta">Data Science Intern, Jan 2025–May 2025 | Chicago, IL</span>
           <ul>
-            <li>Built a Random Forest model to forecast customer churn, achieving 85% accuracy.</li>
-            <li>Automated data pipeline in Python to process 1M+ transaction records weekly.</li>
+            <li>Built Random Forest model to forecast customer churn, achieving 85% accuracy.</li>
+            <li>Automated Python pipeline processing 1M+ transaction records weekly.</li>
           </ul>
         </li>
         <li>
           <strong>Accordion India</strong><br>
-          <span class="meta">Data Scientist 2, Sep 2022–Jul 2024; Data Scientist 1, Sep 2021–Sep 2022</span>
+          <span class="meta">Data Scientist 2, Sep 2022–Jul 2024; Data Scientist 1, Sep 2021–Sep 2022</span>
           <ul>
-            <li>Deployed AWS-based A/B testing automation pipeline, reducing analysis time by 60%.</li>
-            <li>Fine-tuned LLaMA 3.2 3B with LoRA for customer support chatbot, improving response quality by 20%.</li>
+            <li>Deployed AWS A/B testing pipeline, reducing analysis time by 60%.</li>
+            <li>Fine-tuned LLaMA 3.2 3B with LoRA, improving chatbot response quality by 20%.</li>
           </ul>
         </li>
         <li>
           <strong>Capgemini Invent</strong><br>
-          <span class="meta">Associate Consultant, Oct 2020–Sep 2021; Senior Analyst, Jul 2019–Oct 2020</span>
+          <span class="meta">Associate Consultant, Oct 2020–Sep 2021; Senior Analyst, Jul 2019–Oct 2020</span>
           <ul>
-            <li>Led Azure Synapse Spark implementation for keyword extraction, enabling real-time insights.</li>
-            <li>Designed Power BI dashboards to track NPV sensitivity, informing executive decisions.</li>
+            <li>Led Azure Synapse Spark keyword-extraction implementation for real-time insights.</li>
+            <li>Designed Power BI dashboards visualizing NPV sensitivity for executive decisions.</li>
           </ul>
         </li>
       </ul>
     </div>
+
     <div class="section">
       <h2>Skills</h2>
       <ul>
-        <li>Python, SQL, PySpark, Spark MLlib</li>
+        <li>Python, SQL, PySpark, Spark MLlib</li>
         <li>Machine Learning, Deep Learning, NLP, LLMs, RAG, MLOps</li>
         <li>AWS (S3, Glue, EMR), Azure (Synapse, Data Factory), Databricks</li>
-        <li>Power BI, Tableau, Excel</li>
+        <li>Power BI, Tableau, Excel</li>
       </ul>
     </div>
+
     <div class="section">
       <h2>Certifications</h2>
       <ul>
-        <li>Azure AI Engineer Associate</li>
+        <li>Azure AI Engineer Associate</li>
         <li>AWS Machine Learning Engineer Associate</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Projects</h2>
+      <ul>
+        <li><a href="churn.html">Customer Churn Forecasting Pipeline</a></li>
+        <li><a href="ab-testing.html">Automated A/B Testing Pipeline</a></li>
+        <li><a href="llama-finetune.html">LoRA Fine-Tuning of LLaMA 3.2 3B</a></li>
+        <li><a href="keyword-extraction.html">Scalable Keyword Extraction Pipeline</a></li>
+        <li><a href="npv-dashboard.html">NPV Sensitivity Dashboard</a></li>
       </ul>
     </div>
   </div>
