@@ -1,9 +1,3 @@
----
-layout: default
-title: Home
-permalink: /
----
-
 # Welcome to My Portfolio
 
 I’m **Mayank Bambal**, an MS candidate in Business Analytics & Information Management at Purdue University (graduating August 2025). With a B.Tech in Mechanical Engineering from IIT Indore (2019), I design and implement data-driven solutions that drive business impact across industries.
