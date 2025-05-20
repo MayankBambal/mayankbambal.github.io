@@ -153,7 +153,6 @@ header p {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
-  border-bottom: 1px solid var(--border-color);
 }
 
 .nav-container {
@@ -161,7 +160,7 @@ header p {
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 2.5rem;
   padding: 1rem var(--section-padding);
 }
 
@@ -498,7 +497,7 @@ li:hover::before {
   }
   
   .nav-container {
-    gap: 1.5rem;
+    gap: 2rem;
   }
 }
 
@@ -534,7 +533,7 @@ li:hover::before {
   }
   
   .nav-container {
-    gap: 1rem;
+    gap: 1.5rem;
     padding: 0.75rem var(--section-padding);
   }
   
@@ -562,7 +561,7 @@ li:hover::before {
   }
   
   .nav-container {
-    gap: 0.75rem;
+    gap: 1.25rem;
     padding: 0.5rem var(--section-padding);
   }
   
