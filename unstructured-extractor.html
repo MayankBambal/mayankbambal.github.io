@@ -11,30 +11,107 @@
     <header>
       <div class="header-content">
         <h1>Unstructured Data Extractor</h1>
-        <p>LLM-powered data extraction pipeline for public reports</p>
+        <p>AI-powered general-purpose data extraction pipeline for unstructured documents</p>
         <a href="index.html" class="back-link">← Back to Portfolio</a>
       </div>
     </header>
 
     <div class="section">
       <h2>Project Overview</h2>
-      <p>Created a data extraction pipeline skeleton that leverages Large Language Models (LLMs) to automate the extraction of structured data from public reports. This project demonstrates the application of modern NLP techniques to solve real-world data extraction challenges.</p>
+      <p>A comprehensive Python-based tool for automatically extracting and processing structured data from unstructured documents using OpenAI's GPT models. While the repository demonstrates extraction from SEC 10-K filings, the underlying framework is designed to be general-purpose and can be adapted for various document types and data extraction needs.</p>
       
+      <div class="project-links">
+        <a href="https://github.com/MayankBambal/unstructured-data-extractor" target="_blank" class="btn">View on GitHub</a>
+      </div>
+
       <h2>Key Features</h2>
       <ul>
-        <li>Automated extraction of key information from unstructured text</li>
-        <li>Integration with state-of-the-art LLM models</li>
-        <li>Customizable extraction templates for different document types</li>
-        <li>Error handling and validation mechanisms</li>
+        <li><strong>Automated Document Download:</strong> Downloads documents from various sources (demonstrated with SEC EDGAR database)</li>
+        <li><strong>AI-Powered Data Extraction:</strong> Uses OpenAI GPT models for intelligent data extraction from unstructured text</li>
+        <li><strong>Dual Extraction Methods:</strong> Basic and enhanced extraction with confidence tracking and probability scoring</li>
+        <li><strong>Advanced Data Cleaning:</strong> Preprocesses HTML/CSS and converts tables to markdown for optimal AI processing</li>
+        <li><strong>Comprehensive Logging:</strong> Detailed logging and monitoring of extraction processes with error handling</li>
+        <li><strong>Structured Output:</strong> Exports data to CSV with metadata, confidence scores, and validation mechanisms</li>
+        <li><strong>Customizable Templates:</strong> Adaptable extraction templates for different document types and use cases</li>
       </ul>
+
+      <h2>Technical Architecture</h2>
+      <div class="tech-section">
+        <h3>Core Components</h3>
+        <ul>
+          <li><strong>Downloader Module:</strong> Fetches documents and organizes them into structured directories</li>
+          <li><strong>Preprocessor:</strong> Cleans HTML content and converts tables to markdown format</li>
+          <li><strong>Basic Extractor:</strong> Core extraction engine using OpenAI's API</li>
+          <li><strong>Enhanced Extractor:</strong> Advanced extraction with confidence assessment and probability tracking</li>
+          <li><strong>Table Converters:</strong> HTML and plain text to markdown conversion utilities</li>
+        </ul>
+
+        <h3>Processing Pipeline</h3>
+        <ol>
+          <li><strong>Download:</strong> Fetches documents from target sources</li>
+          <li><strong>Clean:</strong> Removes formatting and converts tables to structured markdown</li>
+          <li><strong>Extract:</strong> Uses OpenAI GPT models to extract structured data</li>
+          <li><strong>Process:</strong> Structures data into pandas DataFrames with validation</li>
+          <li><strong>Export:</strong> Saves results to CSV with comprehensive metadata</li>
+        </ol>
+      </div>
 
       <h2>Technologies Used</h2>
       <ul>
-        <li>Python</li>
-        <li>Large Language Models (LLMs)</li>
-        <li>Natural Language Processing (NLP)</li>
-        <li>Data Processing Libraries</li>
+        <li><strong>Python 3.8+</strong> - Core programming language</li>
+        <li><strong>OpenAI GPT Models</strong> - AI-powered text understanding and extraction</li>
+        <li><strong>Pandas</strong> - Data manipulation and analysis</li>
+        <li><strong>BeautifulSoup/HTML Parsing</strong> - Document preprocessing</li>
+        <li><strong>Logging Framework</strong> - Comprehensive monitoring and debugging</li>
+        <li><strong>CSV Export</strong> - Structured data output format</li>
+        <li><strong>Environment Management</strong> - Secure API key handling</li>
       </ul>
+
+      <h2>Project Structure</h2>
+      <div class="code-block">
+        <pre>
+src/
+├── main.py                    # Basic extraction pipeline
+├── main_enhanced.py           # Enhanced pipeline with probability tracking
+├── downloader.py              # Document downloader (adaptable to various sources)
+├── preprocessor.py            # HTML cleaning and preprocessing
+├── extractor.py               # Basic OpenAI-powered extraction
+├── enhanced_extractor.py      # Enhanced extraction with confidence metrics
+├── html_to_table.py           # HTML table to markdown converter
+├── plain_to_table.py          # Plain text table to markdown converter
+└── test_imports.py            # Import verification script
+
+data/
+├── raw/                       # Downloaded documents
+├── processed/                 # Cleaned text files
+├── final/                     # Basic extraction results
+└── enhanced_final/            # Enhanced extraction results
+        </pre>
+      </div>
+
+      <h2>Output & Results</h2>
+      <p>The system generates structured CSV files with comprehensive metadata including:</p>
+      <ul>
+        <li><strong>Basic Output:</strong> Extracted data with item descriptions, values, units, and source metadata</li>
+        <li><strong>Enhanced Output:</strong> Includes AI confidence scores and classification (HIGH/MEDIUM/LOW confidence)</li>
+        <li><strong>Validation:</strong> Error handling and data quality assessment</li>
+        <li><strong>Traceability:</strong> Complete audit trail from source document to extracted data</li>
+      </ul>
+
+      <h2>Applications</h2>
+      <p>While demonstrated with SEC financial filings, this general-purpose framework can be adapted for:</p>
+      <ul>
+        <li>Financial document processing and analysis</li>
+        <li>Legal document data extraction</li>
+        <li>Research paper data mining</li>
+        <li>Healthcare record processing</li>
+        <li>Government document analysis</li>
+        <li>Any structured data extraction from unstructured text sources</li>
+      </ul>
+
+      <div class="note">
+        <p><strong>Note:</strong> The GitHub repository demonstrates SEC financial data extraction as a reference implementation, but the underlying codebase is designed to be general-purpose and can be customized for various document types and extraction requirements.</p>
+      </div>
     </div>
   </div>
 </body>
