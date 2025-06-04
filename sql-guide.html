@@ -15,7 +15,7 @@
 
         .sql-guide-header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-bottom: 30px;
             padding: 20px;
@@ -30,34 +30,81 @@
             margin: 0;
         }
 
-        .difficulty-toggle {
+        .difficulty-selector {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 15px 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
             display: flex;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            padding: 4px;
-            gap: 4px;
+            flex-direction: column;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .difficulty-label {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 5px;
+            writing-mode: horizontal-tb;
         }
 
         .difficulty-btn {
-            padding: 8px 16px;
+            width: 40px;
+            height: 40px;
             border: none;
-            border-radius: 6px;
-            background: transparent;
-            color: white;
+            border-radius: 50%;
+            background: #f8f9fa;
+            color: #666;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .difficulty-btn:hover {
+            background: #e9ecef;
+            transform: scale(1.1);
         }
 
         .difficulty-btn.active {
-            background: white;
-            color: #667eea;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: #667eea;
+            color: white;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transform: scale(1.15);
+        }
+
+        .difficulty-btn::after {
+            content: '';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 2px;
+            background: #667eea;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .difficulty-btn.active::after {
+            opacity: 1;
         }
 
         .guide-content {
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 200px 1fr;
             gap: 30px;
             min-height: 500px;
         }
@@ -77,24 +124,37 @@
             font-size: 1.1rem;
         }
 
+        .chapter-section {
+            margin-bottom: 25px;
+        }
+
+        .chapter-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+            padding: 5px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
         .module-list {
             list-style: none;
             padding: 0;
-            margin: 0;
+            margin: 0 0 0 10px;
         }
 
         .module-item {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .module-link {
             display: block;
-            padding: 10px 12px;
+            padding: 8px 10px;
             text-decoration: none;
             color: #666;
             border-radius: 6px;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .module-link:hover {
@@ -113,6 +173,7 @@
             padding: 30px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             min-height: 600px;
+            margin-right: 80px; /* Space for difficulty selector */
         }
 
         .content-area h1 {
@@ -213,25 +274,6 @@
             border-bottom: none;
         }
 
-        .back-to-portfolio {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .back-to-portfolio:hover {
-            background: #5a6fd8;
-            transform: translateY(-1px);
-        }
-
         .loading {
             display: flex;
             justify-content: center;
@@ -260,28 +302,98 @@
             .guide-title {
                 font-size: 2rem;
             }
+
+            .difficulty-selector {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                flex-direction: row;
+                justify-content: center;
+                margin: 20px auto;
+                width: fit-content;
+            }
+
+            .content-area {
+                margin-right: 0;
+            }
+
+            .author-section {
+                margin-top: 40px !important;
+            }
+        }
+
+        .author-section {
+            margin-top: 60px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+        }
+
+        .author-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .author-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .author-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .author-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .author-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .author-icon {
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-to-portfolio">← Back to Portfolio</a>
-    
     <div class="sql-guide-container">
         <header class="sql-guide-header">
             <h1 class="guide-title">📊 SQL Mastery Guide</h1>
-            <div class="difficulty-toggle">
-                <button class="difficulty-btn active" data-level="level_1">Level 1</button>
-                <button class="difficulty-btn" data-level="level_2">Level 2</button>
-                <button class="difficulty-btn" data-level="cheat_sheet">Cheat Sheet</button>
-            </div>
         </header>
+
+        <div class="difficulty-selector">
+            <div class="difficulty-label">LEVEL</div>
+            <button class="difficulty-btn active" data-level="level_1" title="Level 1 - Beginner">L1</button>
+            <button class="difficulty-btn" data-level="level_2" title="Level 2 - Advanced">L2</button>
+            <button class="difficulty-btn" data-level="cheat_sheet" title="Cheat Sheet">CS</button>
+        </div>
 
         <div class="guide-content">
             <nav class="sidebar">
-                <h3>📖 Modules</h3>
-                <ul class="module-list" id="moduleList">
-                    <!-- Modules will be loaded dynamically -->
-                </ul>
+                <h3>📚 Contents</h3>
+                <div id="chapterList">
+                    <!-- Chapters will be loaded dynamically -->
+                </div>
             </nav>
 
             <main class="content-area" id="contentArea">
@@ -290,46 +402,71 @@
         </div>
     </div>
 
+    <div class="author-section">
+        <div class="author-content">
+            <h2 class="author-title">About the Author</h2>
+            <p class="author-subtitle">Mayank Bambal</p>
+            <a href="index.html" class="author-btn">
+                <span class="author-icon">👤</span>
+                Visit Portfolio
+            </a>
+        </div>
+    </div>
+
     <script>
         class SQLGuide {
             constructor() {
                 this.currentLevel = 'level_1';
+                this.currentChapter = 'Chapter1';
                 this.currentModule = 'Introduction';
-                this.modules = [];
+                this.chapters = {};
                 this.init();
             }
 
             async init() {
-                await this.loadModules();
-                await this.loadContent(this.currentModule);
+                await this.loadChapters();
+                await this.loadContent(this.currentChapter, this.currentModule);
                 this.setupEventListeners();
             }
 
-            async loadModules() {
-                // Static module list based on the folder structure
-                this.modules = [
-                    'Introduction',
-                    'Module1',
-                    'Module2', 
-                    'Module3',
-                    'Module4',
-                    'Module5',
-                    'Module6',
-                    'Module7'
-                ];
+            async loadChapters() {
+                // Define the structure of chapters and modules
+                this.chapters = {
+                    'Chapter1': {
+                        title: 'SQL Fundamentals',
+                        modules: [
+                            'Introduction',
+                            'Module1',
+                            'Module2', 
+                            'Module3',
+                            'Module4',
+                            'Module5',
+                            'Module6',
+                            'Module7'
+                        ]
+                    }
+                    // Add more chapters here as needed
+                };
                 
-                this.renderModuleList();
+                this.renderChapterList();
             }
 
-            renderModuleList() {
-                const moduleList = document.getElementById('moduleList');
-                moduleList.innerHTML = this.modules.map(module => `
-                    <li class="module-item">
-                        <a href="#" class="module-link ${module === this.currentModule ? 'active' : ''}" 
-                           data-module="${module}">
-                            ${this.formatModuleName(module)}
-                        </a>
-                    </li>
+            renderChapterList() {
+                const chapterList = document.getElementById('chapterList');
+                chapterList.innerHTML = Object.entries(this.chapters).map(([chapterKey, chapter]) => `
+                    <div class="chapter-section">
+                        <div class="chapter-title">${chapter.title}</div>
+                        <ul class="module-list">
+                            ${chapter.modules.map(module => `
+                                <li class="module-item">
+                                    <a href="#" class="module-link ${this.currentChapter === chapterKey && module === this.currentModule ? 'active' : ''}" 
+                                       data-chapter="${chapterKey}" data-module="${module}">
+                                        ${this.formatModuleName(module)}
+                                    </a>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
                 `).join('');
             }
 
@@ -345,21 +482,22 @@
                     '6': 'HAVING Filters',
                     '7': 'Advanced Queries'
                 };
-                return `📝 Module ${num}: ${titles[num] || 'SQL Concepts'}`;
+                return `📝 ${num}. ${titles[num] || 'SQL Concepts'}`;
             }
 
-            async loadContent(module) {
+            async loadContent(chapter, module) {
                 const contentArea = document.getElementById('contentArea');
                 contentArea.innerHTML = '<div class="loading">Loading content...</div>';
 
                 try {
-                    const response = await fetch(`super_sql_guide/${this.currentLevel}/Chapter1/${module}.md`);
+                    const response = await fetch(`super_sql_guide/${this.currentLevel}/${chapter}/${module}.md`);
                     if (!response.ok) throw new Error('Content not found');
                     
                     const markdown = await response.text();
                     const html = this.markdownToHtml(markdown);
                     contentArea.innerHTML = html;
                     
+                    this.currentChapter = chapter;
                     this.currentModule = module;
                     this.updateActiveModule();
                 } catch (error) {
@@ -433,7 +571,7 @@
             updateActiveModule() {
                 document.querySelectorAll('.module-link').forEach(link => {
                     link.classList.remove('active');
-                    if (link.dataset.module === this.currentModule) {
+                    if (link.dataset.chapter === this.currentChapter && link.dataset.module === this.currentModule) {
                         link.classList.add('active');
                     }
                 });
@@ -446,7 +584,7 @@
                         document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
                         e.target.classList.add('active');
                         this.currentLevel = e.target.dataset.level;
-                        this.loadContent(this.currentModule);
+                        this.loadContent(this.currentChapter, this.currentModule);
                     });
                 });
 
@@ -454,7 +592,9 @@
                 document.addEventListener('click', (e) => {
                     if (e.target.classList.contains('module-link')) {
                         e.preventDefault();
-                        this.loadContent(e.target.dataset.module);
+                        const chapter = e.target.dataset.chapter;
+                        const module = e.target.dataset.module;
+                        this.loadContent(chapter, module);
                     }
                 });
             }
