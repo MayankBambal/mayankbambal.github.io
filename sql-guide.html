@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Guide - Mayank Bambal</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .sql-guide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .sql-guide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .guide-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .difficulty-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .difficulty-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .difficulty-btn.active {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .guide-content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            min-height: 500px;
+        }
+
+        .sidebar {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar h3 {
+            margin: 0 0 15px 0;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .module-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .module-item {
+            margin-bottom: 8px;
+        }
+
+        .module-link {
+            display: block;
+            padding: 10px 12px;
+            text-decoration: none;
+            color: #666;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .module-link:hover {
+            background: #e9ecef;
+            color: #333;
+        }
+
+        .module-link.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .content-area {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            min-height: 600px;
+        }
+
+        .content-area h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .content-area h2 {
+            color: #444;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 5px;
+        }
+
+        .content-area h3 {
+            color: #555;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .content-area h4 {
+            color: #666;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .content-area p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .content-area ul, .content-area ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .content-area li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .content-area pre {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .content-area code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #d73a49;
+        }
+
+        .content-area pre code {
+            background: none;
+            padding: 0;
+            color: #333;
+        }
+
+        .content-area table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-area th, .content-area td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .content-area th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .content-area tr:last-child td {
+            border-bottom: none;
+        }
+
+        .back-to-portfolio {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-portfolio:hover {
+            background: #5a6fd8;
+            transform: translateY(-1px);
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .guide-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .sql-guide-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .guide-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-to-portfolio">← Back to Portfolio</a>
+    
+    <div class="sql-guide-container">
+        <header class="sql-guide-header">
+            <h1 class="guide-title">📊 SQL Mastery Guide</h1>
+            <div class="difficulty-toggle">
+                <button class="difficulty-btn active" data-level="level_1">Level 1</button>
+                <button class="difficulty-btn" data-level="level_2">Level 2</button>
+                <button class="difficulty-btn" data-level="cheat_sheet">Cheat Sheet</button>
+            </div>
+        </header>
+
+        <div class="guide-content">
+            <nav class="sidebar">
+                <h3>📖 Modules</h3>
+                <ul class="module-list" id="moduleList">
+                    <!-- Modules will be loaded dynamically -->
+                </ul>
+            </nav>
+
+            <main class="content-area" id="contentArea">
+                <div class="loading">Loading SQL Guide...</div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        class SQLGuide {
+            constructor() {
+                this.currentLevel = 'level_1';
+                this.currentModule = 'Introduction';
+                this.modules = [];
+                this.init();
+            }
+
+            async init() {
+                await this.loadModules();
+                await this.loadContent(this.currentModule);
+                this.setupEventListeners();
+            }
+
+            async loadModules() {
+                // Static module list based on the folder structure
+                this.modules = [
+                    'Introduction',
+                    'Module1',
+                    'Module2', 
+                    'Module3',
+                    'Module4',
+                    'Module5',
+                    'Module6',
+                    'Module7'
+                ];
+                
+                this.renderModuleList();
+            }
+
+            renderModuleList() {
+                const moduleList = document.getElementById('moduleList');
+                moduleList.innerHTML = this.modules.map(module => `
+                    <li class="module-item">
+                        <a href="#" class="module-link ${module === this.currentModule ? 'active' : ''}" 
+                           data-module="${module}">
+                            ${this.formatModuleName(module)}
+                        </a>
+                    </li>
+                `).join('');
+            }
+
+            formatModuleName(module) {
+                if (module === 'Introduction') return '🎯 Introduction';
+                const num = module.replace('Module', '');
+                const titles = {
+                    '1': 'FROM & JOINs',
+                    '2': 'WHERE Filtering', 
+                    '3': 'SELECT & Columns',
+                    '4': 'ORDER BY Sorting',
+                    '5': 'GROUP BY Aggregation',
+                    '6': 'HAVING Filters',
+                    '7': 'Advanced Queries'
+                };
+                return `📝 Module ${num}: ${titles[num] || 'SQL Concepts'}`;
+            }
+
+            async loadContent(module) {
+                const contentArea = document.getElementById('contentArea');
+                contentArea.innerHTML = '<div class="loading">Loading content...</div>';
+
+                try {
+                    const response = await fetch(`super_sql_guide/${this.currentLevel}/Chapter1/${module}.md`);
+                    if (!response.ok) throw new Error('Content not found');
+                    
+                    const markdown = await response.text();
+                    const html = this.markdownToHtml(markdown);
+                    contentArea.innerHTML = html;
+                    
+                    this.currentModule = module;
+                    this.updateActiveModule();
+                } catch (error) {
+                    contentArea.innerHTML = `
+                        <div style="text-align: center; padding: 40px; color: #666;">
+                            <h2>📚 Content Coming Soon</h2>
+                            <p>This module is being prepared. Please check back later!</p>
+                        </div>
+                    `;
+                }
+            }
+
+            markdownToHtml(markdown) {
+                let html = markdown;
+                
+                // Headers
+                html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+                html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+                html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+                html = html.replace(/^#### (.*$)/gim, '<h4>$1</h4>');
+                
+                // Bold and italic
+                html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+                
+                // Code blocks
+                html = html.replace(/```sql\n([\s\S]*?)\n```/g, '<pre><code>$1</code></pre>');
+                html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+                
+                // Inline code
+                html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+                
+                // Tables
+                const tableRegex = /\|(.+)\|\n\|(.+)\|\n((?:\|.+\|\n?)*)/g;
+                html = html.replace(tableRegex, (match, header, separator, body) => {
+                    const headerCells = header.split('|').map(cell => cell.trim()).filter(cell => cell);
+                    const bodyRows = body.trim().split('\n').map(row => 
+                        row.split('|').map(cell => cell.trim()).filter(cell => cell)
+                    );
+                    
+                    let table = '<table><thead><tr>';
+                    headerCells.forEach(cell => table += `<th>${cell}</th>`);
+                    table += '</tr></thead><tbody>';
+                    
+                    bodyRows.forEach(row => {
+                        table += '<tr>';
+                        row.forEach(cell => table += `<td>${cell}</td>`);
+                        table += '</tr>';
+                    });
+                    
+                    table += '</tbody></table>';
+                    return table;
+                });
+                
+                // Lists
+                html = html.replace(/^- (.*$)/gim, '<li>$1</li>');
+                html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+                
+                // Paragraphs
+                html = html.split('\n\n').map(paragraph => {
+                    paragraph = paragraph.trim();
+                    if (paragraph && !paragraph.startsWith('<')) {
+                        return `<p>${paragraph}</p>`;
+                    }
+                    return paragraph;
+                }).join('\n\n');
+                
+                return html;
+            }
+
+            updateActiveModule() {
+                document.querySelectorAll('.module-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.module === this.currentModule) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            setupEventListeners() {
+                // Difficulty toggle
+                document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
+                        e.target.classList.add('active');
+                        this.currentLevel = e.target.dataset.level;
+                        this.loadContent(this.currentModule);
+                    });
+                });
+
+                // Module navigation
+                document.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('module-link')) {
+                        e.preventDefault();
+                        this.loadContent(e.target.dataset.module);
+                    }
+                });
+            }
+        }
+
+        // Initialize the SQL Guide when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new SQLGuide();
+        });
+    </script>
+</body>
+</html> 
