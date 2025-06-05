@@ -10,18 +10,23 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            padding-top: 80px; /* Space for fixed nav */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         .chapter-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 30px;
             padding: 15px 20px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
+            border-radius: 0;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+            z-index: 200;
         }
 
         .chapter-nav-item {
@@ -146,65 +151,100 @@
 
         .sidebar {
             background: #f8f9fa;
-            border-radius: 0;
+            border-radius: 0 12px 12px 0;
             padding: 20px;
-            height: 100vh;
+            height: calc(100vh - 60px);
             position: fixed;
-            top: 0;
             left: 0;
+            top: 60px;
             width: 280px;
             overflow-y: auto;
-            z-index: 999;
-            border-right: 1px solid #e9ecef;
+            z-index: 100;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .sidebar h3 {
-            margin: 20px 0 15px 0;
+            margin: 0 0 15px 0;
             color: #333;
             font-size: 1.1rem;
         }
 
         .chapter-section {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         .chapter-title {
             font-size: 0.9rem;
             font-weight: 600;
             color: #667eea;
-            margin-bottom: 8px;
-            padding: 5px 0;
+            margin: 0;
+            padding: 12px 15px;
+            background: #f8f9fa;
             border-bottom: 1px solid #e9ecef;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .chapter-title:hover {
+            background: #e9ecef;
+        }
+
+        .chapter-toggle {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .chapter-section.collapsed .chapter-toggle {
+            transform: rotate(-90deg);
         }
 
         .module-list {
             list-style: none;
             padding: 0;
-            margin: 0 0 0 10px;
+            margin: 0;
+            max-height: 500px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .chapter-section.collapsed .module-list {
+            max-height: 0;
         }
 
         .module-item {
-            margin-bottom: 6px;
+            margin-bottom: 0;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .module-item:last-child {
+            border-bottom: none;
         }
 
         .module-link {
             display: block;
-            padding: 8px 10px;
+            padding: 12px 15px;
             text-decoration: none;
             color: #666;
-            border-radius: 6px;
             transition: all 0.3s ease;
             font-size: 0.85rem;
         }
 
         .module-link:hover {
-            background: #e9ecef;
+            background: #f1f3f4;
             color: #333;
+            padding-left: 20px;
         }
 
         .module-link.active {
             background: #667eea;
             color: white;
+            font-weight: 500;
         }
 
         .content-area {
@@ -213,7 +253,7 @@
             padding: 30px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             min-height: 600px;
-            margin-left: 280px;
+            margin-left: 300px;
             margin-right: 80px; /* Space for difficulty selector */
         }
 
@@ -325,37 +365,43 @@
         }
 
         @media (max-width: 768px) {
+            .sql-guide-container {
+                padding-top: 120px; /* More space for vertical nav on mobile */
+            }
+
             .guide-content {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
 
-            .sidebar {
-                position: relative;
-                top: auto;
-                left: auto;
-                width: 100%;
-                height: auto;
-                z-index: auto;
-                border-right: none;
-                border-bottom: 1px solid #e9ecef;
-                border-radius: 12px;
-            }
-
-            .sidebar h3 {
-                margin: 0 0 15px 0;
-            }
-
             .chapter-nav {
+                position: fixed;
                 flex-direction: column;
                 gap: 10px;
-                padding: 20px;
+                padding: 15px 20px;
+                height: auto;
             }
 
             .chapter-nav-item {
                 margin: 0;
                 text-align: center;
                 width: 100%;
+                max-width: 300px;
+            }
+
+            .sidebar {
+                position: relative;
+                left: auto;
+                top: auto;
+                width: 100%;
+                height: auto;
+                border-radius: 12px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                margin-top: 20px;
+            }
+
+            .sidebar h3 {
+                margin-top: 0;
             }
 
             .difficulty-selector {
@@ -513,8 +559,11 @@
             renderChapterList() {
                 const chapterList = document.getElementById('chapterList');
                 chapterList.innerHTML = Object.entries(this.chapters).map(([chapterKey, chapter]) => `
-                    <div class="chapter-section">
-                        <div class="chapter-title">${chapter.title}</div>
+                    <div class="chapter-section" data-chapter="${chapterKey}">
+                        <div class="chapter-title" onclick="this.parentElement.classList.toggle('collapsed')">
+                            ${chapter.title}
+                            <span class="chapter-toggle">▼</span>
+                        </div>
                         <ul class="module-list">
                             ${chapter.modules.map(module => `
                                 <li class="module-item">
@@ -534,12 +583,12 @@
                 const num = module.replace('Module', '');
                 const titles = {
                     '1': 'FROM & JOINs',
-                    '2': 'WHERE Filtering',
+                    '2': 'WHERE Filtering', 
                     '3': 'GROUP BY & Aggregates',
-                    '4': 'HAVING Clause',
-                    '5': 'SELECT & Columns',
-                    '6': 'ORDER BY Sorting',
-                    '7': 'Advanced Concepts'
+                    '4': 'SELECT & Columns',
+                    '5': 'ORDER BY & Sorting',
+                    '6': 'HAVING & Group Filters',
+                    '7': 'Advanced Queries'
                 };
                 return `📝 ${num}. ${titles[num] || 'SQL Concepts'}`;
             }
