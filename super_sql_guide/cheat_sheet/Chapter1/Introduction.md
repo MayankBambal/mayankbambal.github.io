@@ -8,33 +8,37 @@ This cheat sheet provides a quick reference for SQL fundamentals, organized by t
 
 **The most important concept in SQL** - Understanding this order explains alias scope, WHERE vs. HAVING usage, and overall query behavior:
 
+<div align="center">
+
 ```mermaid
 ---
 config:
   theme: base
   themeVariables:
-    primaryColor: '#0ea5e9'
+    primaryColor: '#2d3748'
     primaryTextColor: '#ffffff'
-    primaryBorderColor: '#0284c7'
-    lineColor: '#64748b'
-    secondaryColor: '#f0f9ff'
+    primaryBorderColor: '#1a202c'
+    lineColor: '#4a5568'
+    secondaryColor: '#f7fafc'
     background: '#ffffff'
     fontSize: '16px'
 ---
 flowchart LR
-    A["🚀 1. FROM & JOIN<br/>Define sources"] 
-    B["🔍 2. WHERE<br/>Filter rows"]
-    C["📊 3. GROUP BY<br/>Group rows"]
-    D["✅ 4. HAVING<br/>Filter groups"]
-    E["📋 5. SELECT<br/>Choose columns"]
-    F["🔄 6. DISTINCT<br/>Remove dupes"]
-    G["📈 7. ORDER BY<br/>Sort results"]
-    H["📏 8. LIMIT<br/>Restrict rows"]
+    A["1. FROM & JOIN<br/>Define sources"] 
+    B["2. WHERE<br/>Filter rows"]
+    C["3. GROUP BY<br/>Group rows"]
+    D["4. HAVING<br/>Filter groups"]
+    E["5. SELECT<br/>Choose columns"]
+    F["6. DISTINCT<br/>Remove dupes"]
+    G["7. ORDER BY<br/>Sort results"]
+    H["8. LIMIT<br/>Restrict rows"]
     
     A --> B --> C --> D --> E --> F --> G --> H
     
-    classDef default fill:#f0f9ff,stroke:#0ea5e9,stroke-width:2px,color:#0c4a6e,font-weight:bold
+    classDef default fill:#f7fafc,stroke:#2d3748,stroke-width:2px,color:#2d3748
 ```
+
+</div>
 
 > **💡 Key Point**: This execution order is logical, not necessarily the physical order. Understanding it helps you write correct, efficient SQL.
 

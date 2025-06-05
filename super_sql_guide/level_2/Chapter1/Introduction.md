@@ -22,28 +22,30 @@ Many common SQL errors and misunderstandings arise from a lack of awareness of t
 
 ## The Logical Query Processing Order
 
+<div align="center">
+
 ```mermaid
 ---
 config:
   theme: base
   themeVariables:
-    primaryColor: '#3b82f6'
+    primaryColor: '#2d3748'
     primaryTextColor: '#ffffff'
-    primaryBorderColor: '#1d4ed8'
-    lineColor: '#6b7280'
-    secondaryColor: '#f8fafc'
+    primaryBorderColor: '#1a202c'
+    lineColor: '#4a5568'
+    secondaryColor: '#f7fafc'
     background: '#ffffff'
     fontSize: '16px'
 ---
 flowchart TD
-    A["🔍 1. FROM and JOINs<br/>Identify and combine data sources"] 
-    B["🔧 2. WHERE<br/>Filter individual rows"]
-    C["📊 3. GROUP BY<br/>Group rows by common values"]
-    D["✅ 4. HAVING<br/>Filter groups based on aggregates"]
-    E["📋 5. SELECT<br/>Choose columns and expressions"]
-    F["🔄 6. DISTINCT<br/>Remove duplicate rows"]
-    G["📈 7. ORDER BY<br/>Sort the final result set"]
-    H["📏 8. LIMIT/OFFSET<br/>Restrict number of returned rows"]
+    A["1. FROM and JOINs<br/>Identify and combine data sources"] 
+    B["2. WHERE<br/>Filter individual rows"]
+    C["3. GROUP BY<br/>Group rows by common values"]
+    D["4. HAVING<br/>Filter groups based on aggregates"]
+    E["5. SELECT<br/>Choose columns and expressions"]
+    F["6. DISTINCT<br/>Remove duplicate rows"]
+    G["7. ORDER BY<br/>Sort the final result set"]
+    H["8. LIMIT/OFFSET<br/>Restrict number of returned rows"]
     
     A --> B
     B --> C
@@ -53,22 +55,26 @@ flowchart TD
     F --> G
     G --> H
     
-    classDef default fill:#f8fafc,stroke:#3b82f6,stroke-width:2px,color:#1e293b
-    classDef highlight fill:#3b82f6,stroke:#1d4ed8,stroke-width:3px,color:#ffffff
+    classDef default fill:#f7fafc,stroke:#2d3748,stroke-width:2px,color:#2d3748
+    classDef highlight fill:#2d3748,stroke:#1a202c,stroke-width:2px,color:#ffffff
 ```
+
+</div>
 
 ### Interactive Flow Diagram
 
 For a more detailed understanding, here's an enhanced version that shows the data transformation at each step:
+
+<div align="center">
 
 ```mermaid
 ---
 config:
   theme: base
   themeVariables:
-    primaryColor: '#059669'
+    primaryColor: '#374151'
     primaryTextColor: '#ffffff'
-    primaryBorderColor: '#047857'
+    primaryBorderColor: '#1f2937'
     lineColor: '#6b7280'
     fontSize: '14px'
 ---
@@ -76,20 +82,20 @@ flowchart TD
     START([SQL Query Input]) --> FROM
     
     subgraph "Phase 1: Data Assembly"
-        FROM["🔍 FROM & JOINs<br/>📁 Combine Tables<br/>🔗 Apply Join Conditions"]
-        WHERE["🔧 WHERE<br/>🎯 Filter Rows<br/>❌ Remove Unwanted Data"]
+        FROM["FROM & JOINs<br/>Combine Tables<br/>Apply Join Conditions"]
+        WHERE["WHERE<br/>Filter Rows<br/>Remove Unwanted Data"]
     end
     
     subgraph "Phase 2: Grouping & Aggregation"
-        GROUP["📊 GROUP BY<br/>🗂️ Create Row Groups<br/>📈 Prepare for Aggregates"]
-        HAVING["✅ HAVING<br/>🔍 Filter Groups<br/>📊 Test Aggregate Conditions"]
+        GROUP["GROUP BY<br/>Create Row Groups<br/>Prepare for Aggregates"]
+        HAVING["HAVING<br/>Filter Groups<br/>Test Aggregate Conditions"]
     end
     
     subgraph "Phase 3: Output Formatting"
-        SELECT["📋 SELECT<br/>🎨 Choose Columns<br/>🧮 Calculate Expressions"]
-        DISTINCT["🔄 DISTINCT<br/>🧹 Remove Duplicates<br/>✨ Unique Results Only"]
-        ORDER["📈 ORDER BY<br/>🔢 Sort Results<br/>📊 Final Arrangement"]
-        LIMIT["📏 LIMIT/OFFSET<br/>✂️ Restrict Rows<br/>📄 Pagination"]
+        SELECT["SELECT<br/>Choose Columns<br/>Calculate Expressions"]
+        DISTINCT["DISTINCT<br/>Remove Duplicates<br/>Unique Results Only"]
+        ORDER["ORDER BY<br/>Sort Results<br/>Final Arrangement"]
+        LIMIT["LIMIT/OFFSET<br/>Restrict Rows<br/>Pagination"]
     end
     
     RESULT([Final Result Set])
@@ -103,12 +109,14 @@ flowchart TD
     ORDER --> LIMIT
     LIMIT --> RESULT
     
-    classDef phaseBox fill:#f0fdf4,stroke:#059669,stroke-width:2px
-    classDef startEnd fill:#1f2937,stroke:#374151,stroke-width:2px,color:#ffffff
-    classDef process fill:#ffffff,stroke:#059669,stroke-width:2px,color:#064e3b
+    classDef phaseBox fill:#f9fafb,stroke:#374151,stroke-width:2px
+    classDef startEnd fill:#1f2937,stroke:#111827,stroke-width:2px,color:#ffffff
+    classDef process fill:#ffffff,stroke:#374151,stroke-width:2px,color:#1f2937
     
     class START,RESULT startEnd
     class FROM,WHERE,GROUP,HAVING,SELECT,DISTINCT,ORDER,LIMIT process
 ```
+
+</div>
 
 This guide will continually refer to this execution order to clarify the behavior and constraints of each SQL clause.

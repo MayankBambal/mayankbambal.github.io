@@ -37,28 +37,32 @@ WHERE department = 'Sales'
 
 You might think the database reads it top to bottom (SELECT, then FROM, then WHERE). But actually, the database processes it in this order:
 
+<div align="center">
+
 ```mermaid
 ---
 config:
   theme: base
   themeVariables:
-    primaryColor: '#3b82f6'
+    primaryColor: '#2d3748'
     primaryTextColor: '#ffffff'
-    primaryBorderColor: '#2563eb'
-    lineColor: '#1e40af'
-    secondaryColor: '#f0f9ff'
+    primaryBorderColor: '#1a202c'
+    lineColor: '#4a5568'
+    secondaryColor: '#f7fafc'
     background: '#ffffff'
     fontSize: '16px'
 ---
 flowchart TD
-    A["1️⃣ FROM<br/>First, find the employees table"] 
-    B["2️⃣ WHERE<br/>Then, filter for only Sales department employees"]
-    C["3️⃣ SELECT<br/>Finally, show just the name column"]
+    A["1. FROM<br/>First, find the employees table"] 
+    B["2. WHERE<br/>Then, filter for only Sales department employees"]
+    C["3. SELECT<br/>Finally, show just the name column"]
     
     A --> B --> C
     
-    classDef default fill:#f0f9ff,stroke:#3b82f6,stroke-width:2px,color:#1e40af,font-weight:bold
+    classDef default fill:#f7fafc,stroke:#2d3748,stroke-width:2px,color:#2d3748
 ```
+
+</div>
 
 Think of it like getting dressed: even though you might say "I'll wear my blue shirt with jeans," you actually put on the jeans first, then the shirt. SQL works similarly!
 
@@ -66,28 +70,30 @@ Think of it like getting dressed: even though you might say "I'll wear my blue s
 
 Here's the order the database follows (don't worry if this seems confusing now - we'll explain each step):
 
+<div align="center">
+
 ```mermaid
 ---
 config:
   theme: base
   themeVariables:
-    primaryColor: '#f59e0b'
+    primaryColor: '#2d3748'
     primaryTextColor: '#ffffff'
-    primaryBorderColor: '#d97706'
-    lineColor: '#92400e'
-    secondaryColor: '#fef3c7'
+    primaryBorderColor: '#1a202c'
+    lineColor: '#4a5568'
+    secondaryColor: '#f7fafc'
     background: '#ffffff'
     fontSize: '18px'
 ---
 flowchart TD
-    A["1️⃣ FROM and JOINs<br/>Get the data from tables"] 
-    B["2️⃣ WHERE<br/>Filter the rows"]
-    C["3️⃣ GROUP BY<br/>Group related rows together"]
-    D["4️⃣ HAVING<br/>Filter the groups"]
-    E["5️⃣ SELECT<br/>Choose which columns to show"]
-    F["6️⃣ DISTINCT<br/>Remove duplicates"]
-    G["7️⃣ ORDER BY<br/>Sort the results"]
-    H["8️⃣ LIMIT<br/>Show only a certain number of rows"]
+    A["1. FROM and JOINs<br/>Get the data from tables"] 
+    B["2. WHERE<br/>Filter the rows"]
+    C["3. GROUP BY<br/>Group related rows together"]
+    D["4. HAVING<br/>Filter the groups"]
+    E["5. SELECT<br/>Choose which columns to show"]
+    F["6. DISTINCT<br/>Remove duplicates"]
+    G["7. ORDER BY<br/>Sort the results"]
+    H["8. LIMIT<br/>Show only a certain number of rows"]
     
     A --> B
     B --> C
@@ -97,8 +103,10 @@ flowchart TD
     F --> G
     G --> H
     
-    classDef default fill:#fef3c7,stroke:#f59e0b,stroke-width:3px,color:#92400e,font-weight:bold
+    classDef default fill:#f7fafc,stroke:#2d3748,stroke-width:2px,color:#2d3748
 ```
+
+</div>
 
 Understanding this order will help you avoid many common mistakes and write better queries. We'll refer back to this order throughout the guide to help everything make sense.
 

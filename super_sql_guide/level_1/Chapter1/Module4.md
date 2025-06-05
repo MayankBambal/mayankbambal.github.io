@@ -23,31 +23,35 @@ Think of it this way:
 
 HAVING comes after GROUP BY in our processing order:
 
+<div align="center">
+
 ```mermaid
 ---
 config:
   theme: base
   themeVariables:
-    primaryColor: '#f59e0b'
+    primaryColor: '#2d3748'
     primaryTextColor: '#ffffff'
-    primaryBorderColor: '#d97706'
-    lineColor: '#92400e'
-    secondaryColor: '#fef3c7'
+    primaryBorderColor: '#1a202c'
+    lineColor: '#4a5568'
+    secondaryColor: '#f7fafc'
     background: '#ffffff'
     fontSize: '14px'
 ---
 flowchart TD
-    A["1️⃣ FROM<br/>Get the data"] 
-    B["2️⃣ WHERE<br/>Filter individual rows"]
-    C["3️⃣ GROUP BY<br/>Group the remaining rows"]
-    D["4️⃣ HAVING<br/>Filter the groups"]:::highlight
-    E["5️⃣ SELECT<br/>Show the results"]
+    A["1. FROM<br/>Get the data"] 
+    B["2. WHERE<br/>Filter individual rows"]
+    C["3. GROUP BY<br/>Group the remaining rows"]
+    D["4. HAVING<br/>Filter the groups"]:::highlight
+    E["5. SELECT<br/>Show the results"]
     
     A --> B --> C --> D --> E
     
-    classDef default fill:#ffffff,stroke:#f59e0b,stroke-width:2px,color:#92400e
-    classDef highlight fill:#fef3c7,stroke:#d97706,stroke-width:3px,color:#92400e,font-weight:bold
+    classDef default fill:#ffffff,stroke:#2d3748,stroke-width:2px,color:#2d3748
+    classDef highlight fill:#f7fafc,stroke:#1a202c,stroke-width:3px,color:#2d3748
 ```
+
+</div>
 
 ## 4.2. WHERE vs HAVING - What's the Difference?
 
@@ -146,29 +150,33 @@ HAVING COUNT(*) > 3;           -- Only show departments with more than 3 people
 
 **Processing order:**
 
+<div align="center">
+
 ```mermaid
 ---
 config:
   theme: base
   themeVariables:
-    primaryColor: '#10b981'
+    primaryColor: '#2d3748'
     primaryTextColor: '#ffffff'
-    primaryBorderColor: '#059669'
-    lineColor: '#374151'
-    secondaryColor: '#f8fafc'
+    primaryBorderColor: '#1a202c'
+    lineColor: '#4a5568'
+    secondaryColor: '#f7fafc'
     background: '#ffffff'
     fontSize: '14px'
 ---
 flowchart TD
-    A["1️⃣ WHERE<br/>Removes all interns from consideration"] 
-    B["2️⃣ GROUP BY<br/>Groups remaining employees by department"]
-    C["3️⃣ HAVING<br/>Only keeps departments with more than 3 employees"]
-    D["4️⃣ SELECT<br/>Shows the final results"]
+    A["1. WHERE<br/>Removes all interns from consideration"] 
+    B["2. GROUP BY<br/>Groups remaining employees by department"]
+    C["3. HAVING<br/>Only keeps departments with more than 3 employees"]
+    D["4. SELECT<br/>Shows the final results"]
     
     A --> B --> C --> D
     
-    classDef default fill:#f8fafc,stroke:#10b981,stroke-width:2px,color:#374151,font-weight:normal
+    classDef default fill:#f7fafc,stroke:#2d3748,stroke-width:2px,color:#2d3748
 ```
+
+</div>
 
 ## 4.5. Common HAVING Mistakes
 
