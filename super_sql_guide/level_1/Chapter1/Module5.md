@@ -19,36 +19,14 @@ This says "I want to see just the name and salary columns from the employees tab
 ### When it happens
 
 Remember our processing order? SELECT comes quite late in the process:
+1. **FROM** - Get data from tables
+2. **WHERE** - Filter individual rows
+3. **GROUP BY** - Group the rows
+4. **HAVING** - Filter the groups  
+5. **SELECT** - Choose what to show
+6. **ORDER BY** - Sort the results
 
-```
-📋 SQL Processing Flow:
-
-┌─────────────┐
-│    FROM     │ ── Get data from tables
-└─────────────┘
-      ▼
-┌─────────────┐
-│   WHERE     │ ── Filter individual rows
-└─────────────┘
-      ▼
-┌─────────────┐
-│  GROUP BY   │ ── Group the rows
-└─────────────┘
-      ▼
-┌─────────────┐
-│   HAVING    │ ── Filter the groups
-└─────────────┘
-      ▼
-┌─────────────┐
-│   SELECT    │ ── Choose what to show ⭐ (YOU ARE HERE)
-└─────────────┘
-      ▼
-┌─────────────┐
-│  ORDER BY   │ ── Sort the results
-└─────────────┘
-```
-
-⚠️ **Important:** This timing means you can't use column nicknames (aliases) from SELECT in earlier clauses like WHERE.
+This timing is important because it means you can't use column nicknames (aliases) from SELECT in earlier clauses like WHERE.
 
 ## 5.2. Ways to Select Your Data
 
@@ -313,9 +291,6 @@ FROM employees
 - **DISTINCT** removes duplicate rows from your results
 - **CASE** statements let you show different values based on conditions
 - **COALESCE** helps handle missing (NULL) data
-- **Processing order**: 
-  ```
-  FROM ──➤ WHERE ──➤ GROUP BY ──➤ HAVING ──➤ SELECT
-  ```
+- **Processing order**: SELECT happens after FROM, WHERE, GROUP BY, and HAVING
 
 The SELECT clause is where you craft the exact output you want from your data! 

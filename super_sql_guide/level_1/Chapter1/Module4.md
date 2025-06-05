@@ -22,30 +22,11 @@ Think of it this way:
 ### When it happens
 
 HAVING comes after GROUP BY in our processing order:
-
-```
-📊 SQL Processing Flow:
-
-┌─────────────┐
-│    FROM     │ ── Get the data from tables
-└─────────────┘
-      ▼
-┌─────────────┐
-│   WHERE     │ ── Filter individual rows
-└─────────────┘
-      ▼
-┌─────────────┐
-│  GROUP BY   │ ── Group the remaining rows
-└─────────────┘
-      ▼
-┌─────────────┐
-│   HAVING    │ ── Filter the groups ⭐ (YOU ARE HERE)
-└─────────────┘
-      ▼
-┌─────────────┐
-│   SELECT    │ ── Show the results
-└─────────────┘
-```
+1. **FROM** - Get the data from tables
+2. **WHERE** - Filter individual rows
+3. **GROUP BY** - Group the remaining rows
+4. **HAVING** - Filter the groups
+5. **SELECT** - Show the results
 
 ## 4.2. WHERE vs HAVING - What's the Difference?
 
@@ -142,16 +123,11 @@ GROUP BY department            -- Group remaining employees by department
 HAVING COUNT(*) > 3;           -- Only show departments with more than 3 people
 ```
 
-**🔄 Processing Flow:**
-```
-Data ──➤ WHERE ──➤ GROUP BY ──➤ HAVING ──➤ SELECT
-      (filter     (group by     (filter    (show
-       interns)    department)   groups)    results)
-```
-1. **WHERE** removes all interns from consideration
-2. **GROUP BY** groups the remaining employees by department  
-3. **HAVING** only keeps departments with more than 3 employees
-4. **SELECT** shows the final results
+**Processing order:**
+1. WHERE removes all interns from consideration
+2. GROUP BY groups the remaining employees by department  
+3. HAVING only keeps departments with more than 3 employees
+4. SELECT shows the final results
 
 ## 4.5. Common HAVING Mistakes
 
@@ -305,10 +281,7 @@ HAVING COUNT(*) > 10 AND AVG(price) > 30
   - SUM() - "total over X amount"  
   - AVG() - "average above X"
   - MIN()/MAX() - "smallest/largest value meets criteria"
-- **Processing order**: 
-  ```
-  WHERE ──➤ GROUP BY ──➤ HAVING ──➤ SELECT
-  ```
+- **Processing order**: WHERE → GROUP BY → HAVING → SELECT
 - You can use both WHERE and HAVING in the same query
 - Always put HAVING after GROUP BY
 

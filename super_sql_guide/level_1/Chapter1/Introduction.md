@@ -46,14 +46,70 @@ Think of it like getting dressed: even though you might say "I'll wear my blue s
 
 Here's the order the database follows (don't worry if this seems confusing now - we'll explain each step):
 
-1. **FROM and JOINs** - Get the data from tables
-2. **WHERE** - Filter the rows
-3. **GROUP BY** - Group related rows together
-4. **HAVING** - Filter the groups
-5. **SELECT** - Choose which columns to show
-6. **DISTINCT** - Remove duplicates
-7. **ORDER BY** - Sort the results
-8. **LIMIT** - Show only a certain number of rows
+<div style="text-align: center; font-family: monospace; line-height: 2;">
+
+```
+      📥 START: Your SQL Query
+             │
+             ▼
+    ┌─────────────────────────────┐
+    │     🗃️  FROM & JOINs        │
+    │   Get data from tables      │
+    └─────────┬───────────────────┘
+              │
+              ▼
+    ┌─────────────────────────────┐
+    │       🔍  WHERE             │
+    │     Filter the rows         │
+    └─────────┬───────────────────┘
+              │
+              ▼
+    ┌─────────────────────────────┐
+    │     📊  GROUP BY            │
+    │  Group related rows         │
+    └─────────┬───────────────────┘
+              │
+              ▼
+    ┌─────────────────────────────┐
+    │      ⚖️  HAVING             │
+    │   Filter the groups         │
+    └─────────┬───────────────────┘
+              │
+              ▼
+    ┌─────────────────────────────┐
+    │      📋  SELECT             │
+    │ Choose columns to show      │
+    └─────────┬───────────────────┘
+              │
+              ▼
+    ┌─────────────────────────────┐
+    │     🎯  DISTINCT            │
+    │   Remove duplicates         │
+    └─────────┬───────────────────┘
+              │
+              ▼
+    ┌─────────────────────────────┐
+    │     📶  ORDER BY            │
+    │    Sort the results         │
+    └─────────┬───────────────────┘
+              │
+              ▼
+    ┌─────────────────────────────┐
+    │      ✂️  LIMIT              │
+    │ Show limited number of rows │
+    └─────────┬───────────────────┘
+              │
+              ▼
+        📤 FINAL RESULT
+```
+
+</div>
+
+### 💡 Why This Order Matters:
+- **You write SELECT first, but database reads FROM first!**
+- **This explains why some things work and others don't**
+- **Understanding this helps you write better queries**
+- **It prevents common beginner mistakes**
 
 Understanding this order will help you avoid many common mistakes and write better queries. We'll refer back to this order throughout the guide to help everything make sense.
 

@@ -301,10 +301,7 @@ ORDER BY inventory_value DESC
 - You can sort by multiple columns - first column is primary sort, second breaks ties, etc.
 - You can sort by column aliases, calculations, or expressions
 - Without ORDER BY, results come in unpredictable order
-- **Processing order**: 
-  ```
-  SELECT ──➤ ORDER BY ──➤ LIMIT
-  ```
+- **Processing order**: ORDER BY happens after SELECT but before LIMIT
 - Different databases handle NULL values differently when sorting
 
 Remember: if the order of your results matters, always use ORDER BY! 

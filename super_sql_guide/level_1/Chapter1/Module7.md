@@ -301,10 +301,7 @@ LIMIT 10 OFFSET 20  -- Page 3: skip first 20, show next 10
 - **Always use ORDER BY with LIMIT** for predictable results
 - **OFFSET** lets you skip rows for pagination
 - **Pagination formula**: Page N with X items = `LIMIT X OFFSET (N-1)*X`
-- **Processing order**: 
-  ```
-  ORDER BY ──➤ LIMIT ──➤ Results
-  ```
+- **Processing order**: LIMIT happens last, after ORDER BY
 - Use LIMIT for:
   - Top N lists
   - Data sampling  

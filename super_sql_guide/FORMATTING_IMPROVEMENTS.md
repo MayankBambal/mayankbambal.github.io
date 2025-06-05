@@ -9,7 +9,14 @@ This document summarizes the formatting improvements made to all SQL code exampl
 - **Renamed "Chapter" to "Module"**: Changed all main headings from "Chapter X:" to "Module X:" across both level_1 and level_2 directories for consistency and better organization
 - **Maintained numbering**: Kept the same numbering system (Module 1 through Module 7) to preserve logical progression
 
-### 2. **Consistent SQL Formatting**
+### 2. **Enhanced Visual Flow Diagrams**
+- **SQL Query Processing Order**: Converted plain numbered lists to visually appealing flowcharts with arrows, boxes, and emojis
+- **Website-ready formatting**: Added HTML div containers with CSS styling for better web presentation
+- **Interactive elements**: Added visual cues like arrows (▼), boxes (┌─┐), and emojis (🗃️, 🔍, 📊) to make flows engaging
+- **Consistent styling**: Applied similar visual treatment across level_1, level_2, and cheat_sheet versions
+- **Educational enhancements**: Added key insights and explanatory notes alongside visual flows
+
+### 3. **Consistent SQL Formatting**
 - **Multi-line SELECT statements**: Broke down single-line SELECT statements into multiple lines with proper indentation
 - **Column alignment**: Aligned column names vertically for better readability
 - **JOIN formatting**: Properly formatted complex JOIN statements with clear line breaks
@@ -30,15 +37,10 @@ FROM Employees E
 INNER JOIN Departments D ON E.DepartmentID = D.DepartmentID;
 ```
 
-### 3. **Added Descriptive Comments**
+### 4. **Added Descriptive Comments**
 - **Purpose comments**: Added comments explaining what each query does
 - **Performance indicators**: Added comments highlighting performance considerations (e.g., "SLOW:", "BETTER:")
 - **Technique explanations**: Comments explaining specific SQL techniques or workarounds
-
-### 4. **Enhanced Visual Flow Diagrams**
-- **Processing order flows**: Converted simple numbered lists into visual flowcharts with boxes and arrows
-- **Step-by-step diagrams**: Added "YOU ARE HERE" indicators to show current clause in processing order
-- **Contextual flows**: Created different flow styles for different learning levels (beginner vs advanced)
 
 ### 5. **Improved Logical Flow**
 - **Complex queries**: Broke down complex nested queries into more readable formats
@@ -146,40 +148,6 @@ FROM (
     GROUP BY department_name
 ) AS dept_summary
 WHERE dept_summary.avg_salary > 50000;
-```
-
-### 4. **Visual Flow Diagrams**
-**Before (Simple numbered list):**
-```
-1. FROM and JOINs
-2. WHERE
-3. GROUP BY
-4. HAVING
-5. SELECT
-6. ORDER BY
-```
-
-**After (Visual flowchart):**
-```
-┌─────────────────┐
-│  1. FROM & JOIN │ ──┐
-└─────────────────┘   │
-                      ▼
-┌─────────────────┐   │
-│    2. WHERE     │ ──┘
-└─────────────────┘   
-                      ▼
-┌─────────────────┐
-│  3. GROUP BY    │
-└─────────────────┘
-                      ▼
-┌─────────────────┐
-│   4. HAVING     │ ── ⭐ (YOU ARE HERE)
-└─────────────────┘
-                      ▼
-┌─────────────────┐
-│   5. SELECT     │
-└─────────────────┘
 ```
 
 ## Benefits of These Improvements

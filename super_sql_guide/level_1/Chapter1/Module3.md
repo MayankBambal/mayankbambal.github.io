@@ -25,26 +25,10 @@ Think of it like sorting a deck of cards by suit - you group all the hearts toge
 ### When it happens
 
 GROUP BY comes after WHERE in our processing order:
-
-```
-📊 SQL Processing Flow:
-
-┌─────────────┐
-│    FROM     │ ── Get the data from tables
-└─────────────┘
-      ▼
-┌─────────────┐
-│   WHERE     │ ── Filter individual rows
-└─────────────┘
-      ▼
-┌─────────────┐
-│  GROUP BY   │ ── Group the remaining rows ⭐ (YOU ARE HERE)
-└─────────────┘
-      ▼
-┌─────────────┐
-│   SELECT    │ ── Show the summary for each group
-└─────────────┘
-```
+1. **FROM** - Get the data from tables
+2. **WHERE** - Filter individual rows  
+3. **GROUP BY** - Group the remaining rows
+4. **SELECT** - Show the summary for each group
 
 ## 3.2. Basic Aggregate Functions (Counting and Calculating)
 
