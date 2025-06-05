@@ -1009,7 +1009,7 @@
                 return `${num}. ${titles[num] || 'SQL Concepts'}`;
             }
 
-            async loadContent(chapter, module) {
+            async loadContent(chapter, module, scrollToTop = false) {
                 const contentArea = document.getElementById('contentArea');
                 contentArea.innerHTML = '<div class="loading">Loading content...</div>';
 
@@ -1027,6 +1027,14 @@
                             window.renderMermaidDiagrams();
                         }
                     }, 100);
+                    
+                    // Scroll to top if module switched (not level)
+                    if (scrollToTop) {
+                        contentArea.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    }
                     
                     this.currentChapter = chapter;
                     this.currentModule = module;
@@ -1118,7 +1126,8 @@
                         document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
                         e.target.classList.add('active');
                         this.currentLevel = e.target.dataset.level;
-                        this.loadContent(this.currentChapter, this.currentModule);
+                        // Don't scroll to top when switching levels
+                        this.loadContent(this.currentChapter, this.currentModule, false);
                     });
                 });
 
@@ -1131,7 +1140,8 @@
                         this.currentChapter = chapter;
                         // Load the first module of the selected chapter
                         const firstModule = this.chapters[chapter].modules[0];
-                        this.loadContent(chapter, firstModule);
+                        // Scroll to top when switching chapters (which changes modules)
+                        this.loadContent(chapter, firstModule, true);
                         this.renderChapterList(); // Update sidebar
                     });
                 });
@@ -1142,7 +1152,8 @@
                         e.preventDefault();
                         const chapter = e.target.dataset.chapter;
                         const module = e.target.dataset.module;
-                        this.loadContent(chapter, module);
+                        // Scroll to top when switching modules
+                        this.loadContent(chapter, module, true);
                         
                         // Update chapter nav if needed
                         if (chapter !== this.currentChapter) {
