@@ -192,14 +192,14 @@ HAVING COUNT(*) >= 100;  -- Only if we have at least 100 employees
 ### Efficient HAVING Usage
 
 ```sql
--- ✅ GOOD: Filter non-aggregate conditions in WHERE
+-- GOOD: Filter non-aggregate conditions in WHERE
 SELECT department, AVG(salary)
 FROM employees
 WHERE department IN ('Sales', 'IT', 'Marketing')  -- Filter rows first
 GROUP BY department
 HAVING AVG(salary) > 60000;                       -- Then filter groups
 
--- ❌ LESS EFFICIENT: Using HAVING for non-aggregate filtering
+-- LESS EFFICIENT: Using HAVING for non-aggregate filtering
 SELECT department, AVG(salary)
 FROM employees
 GROUP BY department
@@ -346,12 +346,12 @@ HAVING COUNT(DISTINCT job_title) >= 3;
 ## Quick Reference
 
 ### HAVING Checklist
-- ✅ Use HAVING to filter groups based on aggregate values
-- ✅ Put non-aggregate filters in WHERE, not HAVING
-- ✅ HAVING comes after GROUP BY in query order
-- ✅ Can use multiple conditions with AND/OR
-- ✅ Can reference any aggregate function in HAVING
-- ✅ Consider performance: WHERE filters before grouping
+- Use HAVING to filter groups based on aggregate values
+- Put non-aggregate filters in WHERE, not HAVING
+- HAVING comes after GROUP BY in query order
+- Can use multiple conditions with AND/OR
+- Can reference any aggregate function in HAVING
+- Consider performance: WHERE filters before grouping
 
 ### When to Use HAVING
 - **Filter by aggregate values**: COUNT(*) > 10, AVG(salary) > 50000
@@ -361,7 +361,7 @@ HAVING COUNT(DISTINCT job_title) >= 3;
 - **Top/Bottom N groups**: Combined with ORDER BY and LIMIT
 
 ### Common Mistakes
-- ❌ Using HAVING for row filtering instead of WHERE
-- ❌ Forgetting that HAVING requires GROUP BY (usually)
-- ❌ Putting HAVING before GROUP BY
-- ❌ Not considering performance impact of complex HAVING conditions 
+- Using HAVING for row filtering instead of WHERE
+- Forgetting that HAVING requires GROUP BY (usually)
+- Putting HAVING before GROUP BY
+- Not considering performance impact of complex HAVING conditions 

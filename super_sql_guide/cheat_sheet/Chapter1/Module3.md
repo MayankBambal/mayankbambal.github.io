@@ -59,17 +59,17 @@ GROUP BY department;
 **Non-aggregated columns in SELECT must be in GROUP BY**
 
 ```sql
--- ❌ WRONG - name not in GROUP BY, not aggregated
+-- WRONG: name not in GROUP BY, not aggregated
 SELECT department, name, COUNT(*)
 FROM employees
 GROUP BY department;
 
--- ✅ CORRECT - Only grouped columns and aggregates
+-- CORRECT: Only grouped columns and aggregates
 SELECT department, COUNT(*) AS employee_count
 FROM employees
 GROUP BY department;
 
--- ✅ ALSO CORRECT - All non-aggregate columns in GROUP BY
+-- ALSO CORRECT: All non-aggregate columns in GROUP BY
 SELECT department, job_title, COUNT(*)
 FROM employees
 GROUP BY department, job_title;
@@ -188,13 +188,13 @@ CREATE INDEX idx_emp_dept_covering ON employees(department) INCLUDE (salary, hir
 
 ### Filtering Before Grouping
 ```sql
--- ✅ EFFICIENT - Filter with WHERE before grouping
+-- EFFICIENT: Filter with WHERE before grouping
 SELECT department, AVG(salary)
 FROM employees
 WHERE hire_date >= '2020-01-01'  -- Reduces rows before grouping
 GROUP BY department;
 
--- ❌ LESS EFFICIENT - Filter after grouping
+-- LESS EFFICIENT: Filter after grouping
 SELECT department, AVG(salary)
 FROM employees
 GROUP BY department
@@ -300,14 +300,14 @@ GROUP BY CUBE(department, job_title);
 ### SELECT Alias Usage
 ```sql
 -- Some databases allow aliases in GROUP BY
--- ✅ MySQL, PostgreSQL (sometimes)
+-- MySQL, PostgreSQL (sometimes)
 SELECT 
     YEAR(hire_date) AS hire_year,
     COUNT(*) AS hire_count
 FROM employees
 GROUP BY hire_year;  -- Using alias
 
--- ✅ Always works (standard SQL)
+-- Always works (standard SQL)
 SELECT 
     YEAR(hire_date) AS hire_year,
     COUNT(*) AS hire_count
@@ -320,19 +320,19 @@ GROUP BY YEAR(hire_date);  -- Repeat expression
 ## Quick Reference
 
 ### GROUP BY Checklist
-- ✅ Non-aggregate SELECT columns must be in GROUP BY
-- ✅ Use appropriate aggregate functions for your needs
-- ✅ Consider NULL handling in your aggregates
-- ✅ Filter with WHERE before grouping when possible
-- ✅ Index GROUP BY columns for performance
-- ✅ Use HAVING to filter groups, not rows
+- Non-aggregate SELECT columns must be in GROUP BY
+- Use appropriate aggregate functions for your needs
+- Consider NULL handling in your aggregates
+- Filter with WHERE before grouping when possible
+- Index GROUP BY columns for performance
+- Use HAVING to filter groups, not rows
 
 ### Common Mistakes
-- ❌ Selecting non-grouped, non-aggregate columns
-- ❌ Using HAVING for row filtering instead of WHERE
-- ❌ Forgetting that COUNT(*) includes NULLs, but COUNT(column) doesn't
-- ❌ Not considering NULL values in grouping columns
-- ❌ Poor indexing strategy for grouped queries
+- Selecting non-grouped, non-aggregate columns
+- Using HAVING for row filtering instead of WHERE
+- Forgetting that COUNT(*) includes NULLs, but COUNT(column) doesn't
+- Not considering NULL values in grouping columns
+- Poor indexing strategy for grouped queries
 
 ### When to Use GROUP BY
 - **Counting** records by category

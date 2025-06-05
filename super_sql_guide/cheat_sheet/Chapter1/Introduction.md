@@ -40,7 +40,7 @@ flowchart LR
 
 </div>
 
-> **💡 Key Point**: This execution order is logical, not necessarily the physical order. Understanding it helps you write correct, efficient SQL.
+> **Key Point**: This execution order is logical, not necessarily the physical order. Understanding it helps you write correct, efficient SQL.
 
 ## How to Use This Cheat Sheet
 

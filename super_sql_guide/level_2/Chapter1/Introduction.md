@@ -76,6 +76,7 @@ config:
     primaryTextColor: '#ffffff'
     primaryBorderColor: '#1a202c'
     lineColor: '#4a5568'
+    background: '#ffffff'
     fontSize: '12px'
 ---
 flowchart TD

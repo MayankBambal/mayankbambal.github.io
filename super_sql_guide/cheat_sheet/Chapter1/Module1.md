@@ -158,10 +158,10 @@ CREATE INDEX idx_department_id ON departments(dept_id);
 
 ### Avoiding Non-Sargable Conditions
 ```sql
--- ❌ Avoid functions in ON clause
+-- AVOID: Functions in ON clause
 ON UPPER(t1.name) = UPPER(t2.name)
 
--- ✅ Better alternatives
+-- BETTER: Better alternatives
 ON t1.name = t2.name                  -- If case doesn't matter
 -- Or normalize data at insert/update time
 ```

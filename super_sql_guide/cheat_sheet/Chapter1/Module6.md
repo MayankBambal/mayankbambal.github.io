@@ -61,9 +61,9 @@ ORDER BY 2, 1;  -- Sort by 2nd column, then 1st column
 
 | DBMS | Default ASC | Default DESC | NULLS FIRST/LAST Support |
 |------|-------------|--------------|--------------------------|
-| **PostgreSQL, Oracle** | NULLS LAST | NULLS FIRST | ✅ Yes |
-| **SQL Server, MySQL** | NULLS FIRST | NULLS LAST | ❌ No (SQL Server/MySQL) |
-| **SQLite** | NULLS FIRST | NULLS LAST | ✅ Yes (3.30.0+) |
+| **PostgreSQL, Oracle** | NULLS LAST | NULLS FIRST | Yes |
+| **SQL Server, MySQL** | NULLS FIRST | NULLS LAST | No (SQL Server/MySQL) |
+| **SQLite** | NULLS FIRST | NULLS LAST | Yes (3.30.0+) |
 
 ### Controlling NULL Position
 
@@ -217,13 +217,13 @@ ORDER BY salary DESC;
 ### Performance Considerations
 
 ```sql
--- ✅ EFFICIENT: Sorting uses index
+-- EFFICIENT: Sorting uses index
 SELECT name, salary FROM employees ORDER BY employee_id;
 
--- ❌ SLOWER: Expression prevents index usage
+-- SLOWER: Expression prevents index usage
 SELECT name, salary FROM employees ORDER BY UPPER(name);
 
--- ✅ BETTER: Use computed column or expression index
+-- BETTER: Use computed column or expression index
 -- Option 1: Computed column
 ALTER TABLE employees ADD name_upper AS UPPER(name);
 CREATE INDEX idx_name_upper ON employees(name_upper);
@@ -387,12 +387,12 @@ ORDER BY commission DESC NULLS LAST;
 ## Quick Reference
 
 ### ORDER BY Checklist
-- ✅ Always use ORDER BY when order matters
-- ✅ Include unique column for deterministic results
-- ✅ Consider NULL handling across databases
-- ✅ Index ORDER BY columns for performance
-- ✅ Use column aliases when helpful
-- ✅ Be explicit about ASC/DESC for clarity
+- Always use ORDER BY when order matters
+- Include unique column for deterministic results
+- Consider NULL handling across databases
+- Index ORDER BY columns for performance
+- Use column aliases when helpful
+- Be explicit about ASC/DESC for clarity
 
 ### Common Patterns
 - **Basic sorting**: `ORDER BY column ASC/DESC`

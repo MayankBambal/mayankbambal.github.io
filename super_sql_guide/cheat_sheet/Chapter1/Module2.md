@@ -106,10 +106,10 @@ WHERE customer_id NOT IN (1, 2, NULL);   -- May return no rows!
 - UNKNOWN in WHERE clause excludes the row
 
 ```sql
--- ❌ WRONG - Will never find NULL values
+-- WRONG: Will never find NULL values
 WHERE phone_number = NULL;
 
--- ✅ CORRECT - Use IS NULL / IS NOT NULL
+-- CORRECT: Use IS NULL / IS NOT NULL
 WHERE phone_number IS NULL;
 WHERE phone_number IS NOT NULL;
 
@@ -124,7 +124,7 @@ WHERE COALESCE(phone, 'none') = 'none';
 
 **Sargable** (Search ARGument Able) predicates can use indexes effectively.
 
-### ❌ Non-Sargable Examples (Avoid These)
+### Non-Sargable Examples (Avoid These)
 ```sql
 -- Functions on columns prevent index usage
 WHERE UPPER(last_name) = 'SMITH';
@@ -136,7 +136,7 @@ WHERE salary * 12 > 100000;
 WHERE product_name LIKE '%apple%';
 ```
 
-### ✅ Sargable Alternatives
+### Sargable Alternatives
 ```sql
 -- Keep columns "bare" for index usage
 WHERE last_name = 'SMITH';                    -- Case-insensitive collation
@@ -240,17 +240,17 @@ WHERE to_tsvector('english', content) @@ to_tsquery('database & performance');
 ## Quick Reference
 
 ### WHERE Clause Checklist
-- ✅ Use proper comparison operators
-- ✅ Handle NULL values with IS NULL/IS NOT NULL
-- ✅ Use parentheses for complex logic
-- ✅ Write sargable conditions when possible
-- ✅ Index columns used in WHERE clauses
-- ✅ Be careful with NOT IN and NULL values
-- ✅ Consider EXISTS vs IN for subqueries
+- Use proper comparison operators
+- Handle NULL values with IS NULL/IS NOT NULL
+- Use parentheses for complex logic
+- Write sargable conditions when possible
+- Index columns used in WHERE clauses
+- Be careful with NOT IN and NULL values
+- Consider EXISTS vs IN for subqueries
 
 ### Common Mistakes
-- ❌ Using `= NULL` instead of `IS NULL`
-- ❌ Forgetting precedence: NOT, AND, OR
-- ❌ Functions on indexed columns
-- ❌ NOT IN with potentially NULL lists
-- ❌ Missing parentheses in complex conditions 
+- Using `= NULL` instead of `IS NULL`
+- Forgetting precedence: NOT, AND, OR
+- Functions on indexed columns
+- NOT IN with potentially NULL lists
+- Missing parentheses in complex conditions 

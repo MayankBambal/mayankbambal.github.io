@@ -231,13 +231,13 @@ LIMIT 20 OFFSET 40;
 ### OFFSET Performance Problem
 
 ```sql
--- ❌ SLOW: Large offset requires scanning many rows
+-- SLOW: Large offset requires scanning many rows
 SELECT product_name, price
 FROM products
 ORDER BY product_name
 LIMIT 20 OFFSET 50000;  -- Has to skip 50,000 rows!
 
--- ✅ FASTER: Keyset pagination
+-- FASTER: Keyset pagination
 SELECT product_name, price
 FROM products
 WHERE product_name > 'Widget X'  -- Where last page ended
@@ -266,16 +266,16 @@ LIMIT 50;
 ### When OFFSET is Acceptable
 
 ```sql
--- ✅ SMALL offsets are fine
+-- SMALL offsets are fine
 LIMIT 20 OFFSET 100;  -- No problem
 
--- ✅ Known limited result sets
+-- Known limited result sets
 SELECT * FROM recent_orders 
 WHERE order_date >= CURRENT_DATE - INTERVAL '7 days'
 ORDER BY order_date DESC
 LIMIT 50 OFFSET 100;  -- Limited by date filter
 
--- ❌ AVOID large offsets on big tables
+-- AVOID large offsets on big tables
 LIMIT 20 OFFSET 100000;  -- Very slow!
 ```
 
@@ -355,13 +355,13 @@ END;
 ### Always Use ORDER BY with LIMIT
 
 ```sql
--- ❌ BAD: Unpredictable results
+-- BAD: Unpredictable results
 SELECT * FROM products LIMIT 10;
 
--- ✅ GOOD: Predictable, deterministic results
+-- GOOD: Predictable, deterministic results
 SELECT * FROM products ORDER BY product_id LIMIT 10;
 
--- ✅ BETTER: Include unique column for true determinism
+-- BETTER: Include unique column for true determinism
 SELECT * FROM products ORDER BY price DESC, product_id ASC LIMIT 10;
 ```
 
@@ -401,12 +401,12 @@ LIMIT @safe_limit OFFSET @safe_offset;
 ## Quick Reference
 
 ### LIMIT Checklist
-- ✅ Always use ORDER BY with LIMIT for deterministic results
-- ✅ Include unique columns in ORDER BY for pagination
-- ✅ Use keyset pagination for large offsets
-- ✅ Index ORDER BY columns for performance
-- ✅ Validate user input for pagination parameters
-- ✅ Consider total count requirements for UI
+- Always use ORDER BY with LIMIT for deterministic results
+- Include unique columns in ORDER BY for pagination
+- Use keyset pagination for large offsets
+- Index ORDER BY columns for performance
+- Validate user input for pagination parameters
+- Consider total count requirements for UI
 
 ### Pagination Formula
 - **Page N with X items**: `LIMIT X OFFSET (N-1)*X`

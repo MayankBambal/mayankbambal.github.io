@@ -24,7 +24,7 @@ FROM table_name
 ### Avoid SELECT *
 
 ```sql
--- ❌ AVOID: SELECT * problems
+-- AVOID: SELECT * problems
 SELECT * FROM employees;
 ```
 
@@ -35,7 +35,7 @@ SELECT * FROM employees;
 - **Bandwidth**: Wastes network resources
 
 ```sql
--- ✅ BETTER: Be explicit about needed columns
+-- BETTER: Be explicit about needed columns
 SELECT employee_id, name, department, salary
 FROM employees;
 ```
@@ -367,13 +367,13 @@ WHERE department = 'Sales';
 ### Function Usage Impact
 
 ```sql
--- ❌ SLOWER: Functions in SELECT can be CPU-intensive
+-- SLOWER: Functions in SELECT can be CPU-intensive
 SELECT 
     UPPER(CONCAT(first_name, ' ', last_name)) AS full_name_upper,
     COMPLEX_UDF(salary) AS processed_salary  -- User-defined functions are slow
 FROM employees;
 
--- ✅ FASTER: Pre-computed or simpler alternatives
+-- FASTER: Pre-computed or simpler alternatives
 SELECT 
     full_name_upper,  -- Computed column or view
     salary * 1.1 AS processed_salary  -- Simple expression
@@ -434,12 +434,12 @@ GROUP BY product_name;
 ## Quick Reference
 
 ### SELECT Checklist
-- ✅ Specify only needed columns (avoid SELECT *)
-- ✅ Use meaningful aliases for expressions
-- ✅ Handle NULL values appropriately
-- ✅ Consider performance impact of functions
-- ✅ Use CASE for conditional logic
-- ✅ Be aware of expression evaluation order
+- Specify only needed columns (avoid SELECT *)
+- Use meaningful aliases for expressions
+- Handle NULL values appropriately
+- Consider performance impact of functions
+- Use CASE for conditional logic
+- Be aware of expression evaluation order
 
 ### Common Patterns
 - **Calculations**: `price * quantity`, `salary * 12`

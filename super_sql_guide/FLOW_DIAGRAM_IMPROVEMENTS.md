@@ -76,13 +76,13 @@ Based on extensive research of current best practices, Mermaid.js emerged as the
 config:
   theme: base
   themeVariables:
-    primaryColor: '#3b82f6'
+    primaryColor: '#2d3748'
     primaryTextColor: '#ffffff'
-    primaryBorderColor: '#1d4ed8'
+    primaryBorderColor: '#1a202c'
 ---
 flowchart TD
-    A["🔍 1. FROM and JOINs<br/>Identify and combine data sources"] 
-    B["🔧 2. WHERE<br/>Filter individual rows"]
+    A["1. FROM and JOINs<br/>Identify and combine data sources"] 
+    B["2. WHERE<br/>Filter individual rows"]
     <!-- Additional steps -->
 ```
 
@@ -133,7 +133,7 @@ config:
 
 #### **Visual Hierarchy**
 - **Icons**: Emoji-based visual cues for quick recognition
-- **Numbering**: Clear step sequences (1️⃣, 2️⃣, etc.)
+- **Numbering**: Clear step sequences (1, 2, etc.)
 - **Typography**: Hierarchical information structure
 - **Colors**: Semantic color coding by complexity level
 - **Spacing**: Optimal whitespace for readability
