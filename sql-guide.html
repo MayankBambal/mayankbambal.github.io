@@ -139,22 +139,27 @@
 
         .guide-content {
             display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 30px;
+            grid-template-columns: 280px 1fr;
+            gap: 0;
             min-height: 500px;
         }
 
         .sidebar {
             background: #f8f9fa;
-            border-radius: 12px;
+            border-radius: 0;
             padding: 20px;
-            height: fit-content;
-            position: sticky;
-            top: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            overflow-y: auto;
+            z-index: 999;
+            border-right: 1px solid #e9ecef;
         }
 
         .sidebar h3 {
-            margin: 0 0 15px 0;
+            margin: 20px 0 15px 0;
             color: #333;
             font-size: 1.1rem;
         }
@@ -208,6 +213,7 @@
             padding: 30px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             min-height: 600px;
+            margin-left: 280px;
             margin-right: 80px; /* Space for difficulty selector */
         }
 
@@ -325,7 +331,19 @@
             }
 
             .sidebar {
-                position: static;
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 100%;
+                height: auto;
+                z-index: auto;
+                border-right: none;
+                border-bottom: 1px solid #e9ecef;
+                border-radius: 12px;
+            }
+
+            .sidebar h3 {
+                margin: 0 0 15px 0;
             }
 
             .chapter-nav {
@@ -352,6 +370,7 @@
             }
 
             .content-area {
+                margin-left: 0;
                 margin-right: 0;
             }
 
@@ -515,12 +534,12 @@
                 const num = module.replace('Module', '');
                 const titles = {
                     '1': 'FROM & JOINs',
-                    '2': 'WHERE Filtering', 
-                    '3': 'SELECT & Columns',
-                    '4': 'ORDER BY Sorting',
-                    '5': 'GROUP BY Aggregation',
-                    '6': 'HAVING Filters',
-                    '7': 'Advanced Queries'
+                    '2': 'WHERE Filtering',
+                    '3': 'GROUP BY & Aggregates',
+                    '4': 'HAVING Clause',
+                    '5': 'SELECT & Columns',
+                    '6': 'ORDER BY Sorting',
+                    '7': 'Advanced Concepts'
                 };
                 return `📝 ${num}. ${titles[num] || 'SQL Concepts'}`;
             }
