@@ -1030,7 +1030,8 @@
                     
                     // Scroll to top if module switched (not level)
                     if (scrollToTop) {
-                        contentArea.scrollTo({
+                        // Scroll the main window to top
+                        window.scrollTo({
                             top: 0,
                             behavior: 'smooth'
                         });
