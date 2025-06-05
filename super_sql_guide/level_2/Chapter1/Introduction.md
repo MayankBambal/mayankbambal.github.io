@@ -72,10 +72,10 @@ For a more detailed understanding, here's an enhanced version that shows the dat
 config:
   theme: base
   themeVariables:
-    primaryColor: '#374151'
+    primaryColor: '#2d3748'
     primaryTextColor: '#ffffff'
-    primaryBorderColor: '#1f2937'
-    lineColor: '#6b7280'
+    primaryBorderColor: '#1a202c'
+    lineColor: '#4a5568'
     fontSize: '14px'
 ---
 flowchart TD
@@ -109,9 +109,9 @@ flowchart TD
     ORDER --> LIMIT
     LIMIT --> RESULT
     
-    classDef phaseBox fill:#f9fafb,stroke:#374151,stroke-width:2px
-    classDef startEnd fill:#1f2937,stroke:#111827,stroke-width:2px,color:#ffffff
-    classDef process fill:#ffffff,stroke:#374151,stroke-width:2px,color:#1f2937
+    classDef phaseBox fill:#f7fafc,stroke:#2d3748,stroke-width:2px
+    classDef startEnd fill:#2d3748,stroke:#1a202c,stroke-width:2px,color:#ffffff
+    classDef process fill:#ffffff,stroke:#2d3748,stroke-width:2px,color:#2d3748
     
     class START,RESULT startEnd
     class FROM,WHERE,GROUP,HAVING,SELECT,DISTINCT,ORDER,LIMIT process
