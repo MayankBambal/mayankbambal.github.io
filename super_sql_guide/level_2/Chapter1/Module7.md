@@ -1,4 +1,4 @@
-# Chapter 7: Just a Slice, Please! Limiting Results with LIMIT, TOP, ROWNUM, FETCH FIRST
+# Module 7: Just a Slice, Please! Limiting Results with LIMIT, TOP, ROWNUM, FETCH FIRST
 
 Often, queries can return a large number of rows, and it's neither practical nor efficient to retrieve all of them. SQL provides various clauses to restrict the number of rows in the output, which are essential for tasks like pagination, displaying top-N records, and sampling data. The syntax and specific clauses used for this purpose vary significantly across different database management systems.
 

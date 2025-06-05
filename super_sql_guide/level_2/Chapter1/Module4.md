@@ -1,4 +1,4 @@
-# Chapter 4: Filtering Groups - The HAVING Clause
+# Module 4: Filtering Groups - The HAVING Clause
 
 While the WHERE clause filters individual rows, the HAVING clause provides a mechanism to filter groups created by the GROUP BY clause, typically based on the results of aggregate functions.
 

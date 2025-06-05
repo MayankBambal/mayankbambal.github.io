@@ -1,4 +1,4 @@
-# Chapter 6: Sorting Your Results - The ORDER BY Clause
+# Module 6: Sorting Your Results - The ORDER BY Clause
 
 Once you've gotten your data and chosen what to display, you might want to put it in a specific order. That's what ORDER BY does - it sorts your results so they appear in the sequence you want.
 
@@ -301,7 +301,10 @@ ORDER BY inventory_value DESC
 - You can sort by multiple columns - first column is primary sort, second breaks ties, etc.
 - You can sort by column aliases, calculations, or expressions
 - Without ORDER BY, results come in unpredictable order
-- **Processing order**: ORDER BY happens after SELECT but before LIMIT
+- **Processing order**: 
+  ```
+  SELECT ──➤ ORDER BY ──➤ LIMIT
+  ```
 - Different databases handle NULL values differently when sorting
 
 Remember: if the order of your results matters, always use ORDER BY! 

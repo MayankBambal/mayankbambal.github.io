@@ -1,4 +1,4 @@
-# Chapter 2: Filtering Data - The WHERE Clause
+# Module 2: Filtering Data - The WHERE Clause
 
 After the FROM clause (and any associated JOINs) has established the initial dataset, the WHERE clause comes into play to selectively filter rows based on specified criteria.
 

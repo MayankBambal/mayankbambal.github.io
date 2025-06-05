@@ -1,4 +1,4 @@
-# Chapter 1: Getting Your Data - FROM Clause and JOINs
+# Module 1: Getting Your Data - FROM Clause and JOINs
 
 When you want to get information from a database, you need to tell it where to look. That's what the FROM clause does - it's like telling someone which file cabinet to open before looking for documents.
 

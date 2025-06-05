@@ -22,15 +22,46 @@ Many common SQL errors and misunderstandings arise from a lack of awareness of t
 
 ## The Logical Query Processing Order
 
-The typical logical query processing order is as follows:
+The typical logical query processing order follows this flow:
 
-1. **FROM and JOINs**
-2. **WHERE**
-3. **GROUP BY**
-4. **HAVING**
-5. **SELECT**
-6. **DISTINCT**
-7. **ORDER BY**
-8. **LIMIT / OFFSET** (or TOP)
+```
+┌─────────────────┐
+│  1. FROM & JOIN │ ──┐
+└─────────────────┘   │
+                      ▼
+┌─────────────────┐   │
+│    2. WHERE     │ ──┘
+└─────────────────┘   
+                      ▼
+┌─────────────────┐
+│  3. GROUP BY    │
+└─────────────────┘
+                      ▼
+┌─────────────────┐
+│   4. HAVING     │
+└─────────────────┘
+                      ▼
+┌─────────────────┐
+│   5. SELECT     │
+└─────────────────┘
+                      ▼
+┌─────────────────┐
+│  6. DISTINCT    │
+└─────────────────┘
+                      ▼
+┌─────────────────┐
+│  7. ORDER BY    │
+└─────────────────┘
+                      ▼
+┌─────────────────┐
+│8. LIMIT/OFFSET │
+│    (or TOP)     │
+└─────────────────┘
+```
+
+**🔄 Flow Explanation:**
+- **Data flows downward** through each step
+- **Each step processes** the output from the previous step
+- **Understanding this order** explains why certain SQL behaviors occur
 
 This guide will continually refer to this execution order to clarify the behavior and constraints of each SQL clause.

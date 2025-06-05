@@ -1,4 +1,4 @@
-# Chapter 5: Defining the Output – The SELECT Clause
+# Module 5: Defining the Output – The SELECT Clause
 
 The SELECT clause is arguably the most recognized part of an SQL query, as it directly specifies what information the query will ultimately return. It forms the bridge between the complex data manipulations performed by other clauses and the final, human-readable or application-consumable output.
 

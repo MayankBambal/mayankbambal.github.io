@@ -1,4 +1,4 @@
-# Chapter 3: Aggregating Data - The GROUP BY Clause and Aggregate Functions
+# Module 3: Aggregating Data - The GROUP BY Clause and Aggregate Functions
 
 After filtering rows with the WHERE clause, the GROUP BY clause provides a mechanism to group these rows based on common values, enabling aggregate calculations for each group.
 

@@ -1,4 +1,4 @@
-# Chapter 7: Getting Just What You Need - Limiting Results
+# Module 7: Getting Just What You Need - Limiting Results
 
 Sometimes your query might return thousands or millions of rows, but you only want to see a few. That's where LIMIT comes in - it lets you say "just show me the first 10 rows" or "skip the first 20 and show me the next 10."
 
@@ -301,7 +301,10 @@ LIMIT 10 OFFSET 20  -- Page 3: skip first 20, show next 10
 - **Always use ORDER BY with LIMIT** for predictable results
 - **OFFSET** lets you skip rows for pagination
 - **Pagination formula**: Page N with X items = `LIMIT X OFFSET (N-1)*X`
-- **Processing order**: LIMIT happens last, after ORDER BY
+- **Processing order**: 
+  ```
+  ORDER BY ──➤ LIMIT ──➤ Results
+  ```
 - Use LIMIT for:
   - Top N lists
   - Data sampling  

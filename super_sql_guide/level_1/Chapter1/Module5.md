@@ -1,4 +1,4 @@
-# Chapter 5: Choosing Your Output - The SELECT Clause
+# Module 5: Choosing Your Output - The SELECT Clause
 
 The SELECT clause is the most recognizable part of an SQL query - it's where you specify exactly what information you want to see in your results. Think of it like deciding which items to put on a shopping list from all the things available in a store.
 
@@ -19,14 +19,36 @@ This says "I want to see just the name and salary columns from the employees tab
 ### When it happens
 
 Remember our processing order? SELECT comes quite late in the process:
-1. **FROM** - Get data from tables
-2. **WHERE** - Filter individual rows
-3. **GROUP BY** - Group the rows
-4. **HAVING** - Filter the groups  
-5. **SELECT** - Choose what to show
-6. **ORDER BY** - Sort the results
 
-This timing is important because it means you can't use column nicknames (aliases) from SELECT in earlier clauses like WHERE.
+```
+📋 SQL Processing Flow:
+
+┌─────────────┐
+│    FROM     │ ── Get data from tables
+└─────────────┘
+      ▼
+┌─────────────┐
+│   WHERE     │ ── Filter individual rows
+└─────────────┘
+      ▼
+┌─────────────┐
+│  GROUP BY   │ ── Group the rows
+└─────────────┘
+      ▼
+┌─────────────┐
+│   HAVING    │ ── Filter the groups
+└─────────────┘
+      ▼
+┌─────────────┐
+│   SELECT    │ ── Choose what to show ⭐ (YOU ARE HERE)
+└─────────────┘
+      ▼
+┌─────────────┐
+│  ORDER BY   │ ── Sort the results
+└─────────────┘
+```
+
+⚠️ **Important:** This timing means you can't use column nicknames (aliases) from SELECT in earlier clauses like WHERE.
 
 ## 5.2. Ways to Select Your Data
 
@@ -291,6 +313,9 @@ FROM employees
 - **DISTINCT** removes duplicate rows from your results
 - **CASE** statements let you show different values based on conditions
 - **COALESCE** helps handle missing (NULL) data
-- **Processing order**: SELECT happens after FROM, WHERE, GROUP BY, and HAVING
+- **Processing order**: 
+  ```
+  FROM ──➤ WHERE ──➤ GROUP BY ──➤ HAVING ──➤ SELECT
+  ```
 
 The SELECT clause is where you craft the exact output you want from your data! 

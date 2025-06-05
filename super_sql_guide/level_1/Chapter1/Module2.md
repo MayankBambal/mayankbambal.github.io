@@ -1,4 +1,4 @@
-# Chapter 2: Filtering Your Data - The WHERE Clause
+# Module 2: Filtering Your Data - The WHERE Clause
 
 Now that you know how to get data from tables (FROM clause), let's learn how to filter that data to show only what you need. The WHERE clause is like a filter that lets only certain rows pass through.
 
@@ -20,11 +20,24 @@ This says "Show me names and ages, but only for employees older than 25."
 ### When it happens
 
 Remember our processing order? WHERE comes AFTER FROM but BEFORE SELECT:
-1. **FROM** - Get all data from the employees table
-2. **WHERE** - Filter to keep only employees over 25
-3. **SELECT** - Show just the name and age columns
 
-This order is important! Since WHERE happens before SELECT, you can't use column nicknames (aliases) from your SELECT clause in your WHERE clause.
+```
+🔍 SQL Processing Flow:
+
+┌─────────────┐
+│    FROM     │ ── Get all data from the employees table
+└─────────────┘
+      ▼
+┌─────────────┐
+│   WHERE     │ ── Filter to keep only employees over 25 ⭐ (YOU ARE HERE)
+└─────────────┘
+      ▼
+┌─────────────┐
+│   SELECT    │ ── Show just the name and age columns
+└─────────────┘
+```
+
+⚠️ **Important:** Since WHERE happens before SELECT, you can't use column nicknames (aliases) from your SELECT clause in your WHERE clause.
 
 ```sql
 -- This WON'T work!

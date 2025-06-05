@@ -1,4 +1,4 @@
-# Chapter 1: The Foundation – FROM Clause and JOIN Operations
+# Module 1: The Foundation – FROM Clause and JOIN Operations
 
 The journey of data retrieval in SQL begins with identifying and assembling the necessary datasets. The FROM clause, often in conjunction with JOIN operations, lays this groundwork.
 

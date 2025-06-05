@@ -1,4 +1,4 @@
-# Chapter 6: Ordering Results – The ORDER BY Clause
+# Module 6: Ordering Results – The ORDER BY Clause
 
 The ORDER BY clause in SQL is fundamental for controlling the presentation sequence of rows in a query's result set. Without its explicit use, the order of returned rows is not guaranteed by the database system.
 
