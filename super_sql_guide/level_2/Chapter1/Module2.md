@@ -153,6 +153,7 @@ A sargable (Search ARGument Able) predicate is a condition in a WHERE clause tha
 Example (assuming an Employees table with a DepartmentName column):
 
 ```sql
+-- Select all employees from Sales department
 SELECT *
 FROM Employees
 WHERE DepartmentName = 'Sales';
@@ -161,7 +162,9 @@ WHERE DepartmentName = 'Sales';
 **"How would you find all customers whose names start with 'A'?"**
 
 ```sql
-SELECT CustomerName
+-- Find customers with names starting with 'A'
+SELECT 
+    CustomerName
 FROM Customers
 WHERE CustomerName LIKE 'A%';
 ```
@@ -169,7 +172,11 @@ WHERE CustomerName LIKE 'A%';
 **"Write a query to find all products with a price between $50 and $100 (inclusive) that belong to the 'Electronics' category."**
 
 ```sql
-SELECT ProductName, Price, Category
+-- Products in Electronics category priced between $50-$100
+SELECT 
+    ProductName, 
+    Price, 
+    Category
 FROM Products
 WHERE Price BETWEEN 50 AND 100
   AND Category = 'Electronics';
@@ -178,9 +185,15 @@ WHERE Price BETWEEN 50 AND 100
 **"How would you find users who have not provided a phone number OR whose email domain is not 'example.com'?"**
 
 ```sql
-SELECT UserID, UserName, PhoneNumber, Email
+-- Users without phone OR not using example.com email
+SELECT 
+    UserID, 
+    UserName, 
+    PhoneNumber, 
+    Email
 FROM Users
-WHERE PhoneNumber IS NULL OR Email NOT LIKE '%@example.com';
+WHERE PhoneNumber IS NULL 
+   OR Email NOT LIKE '%@example.com';
 ```
 
 ### Edge Cases / Advanced Questions:
@@ -194,7 +207,9 @@ If the list or subquery result for NOT IN contains a NULL value, the NOT IN cond
 If DateColumn is a DATETIME type (which includes a time component), comparing it directly to a date string like '2023-10-26' might cause issues. The database might interpret '2023-10-26' as '2023-10-26 00:00:00'. If the actual DateColumn values have different time components, an exact match will only occur for records at midnight. More importantly, this comparison might be non-sargable if an implicit conversion of DateColumn is forced. A more sargable and accurate way to select all records for that day is to use a range query:
 
 ```sql
-WHERE DateColumn >= '2023-10-26' AND DateColumn < '2023-10-27'
+-- Efficient range query for all records on October 26, 2023
+WHERE DateColumn >= '2023-10-26' 
+  AND DateColumn < '2023-10-27';
 ```
 
 This approach allows an index on DateColumn to be used effectively for a range scan, covering all times within October 26th.

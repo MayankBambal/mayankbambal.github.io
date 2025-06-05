@@ -6,9 +6,14 @@
 
 ### Table Aliases
 ```sql
-FROM employees e                    -- Simple alias
-FROM employees AS e                 -- Explicit AS keyword  
-FROM very_long_table_name vlt       -- Shorter alias for readability
+-- Simple alias for readability
+FROM employees e                    
+
+-- Explicit AS keyword (optional but clear)
+FROM employees AS e                 
+
+-- Shorter alias for very long table names
+FROM very_long_table_name vlt       
 ```
 
 **Rules**:
@@ -18,9 +23,14 @@ FROM very_long_table_name vlt       -- Shorter alias for readability
 
 ### Derived Tables (Subqueries in FROM)
 ```sql
-SELECT d.department, d.avg_salary
+-- Create derived table with department averages
+SELECT 
+    d.department, 
+    d.avg_salary
 FROM (
-    SELECT department, AVG(salary) AS avg_salary
+    SELECT 
+        department, 
+        AVG(salary) AS avg_salary
     FROM employees
     GROUP BY department
 ) AS d                              -- Alias is REQUIRED
@@ -54,22 +64,31 @@ JOINs combine rows from multiple tables based on related columns. Processed as p
 
 ```sql
 -- INNER JOIN - only employees with departments
-SELECT e.name, d.department_name
+SELECT 
+    e.name, 
+    d.department_name
 FROM employees e
 INNER JOIN departments d ON e.dept_id = d.dept_id;
 
 -- LEFT JOIN - all employees, department info if available
-SELECT e.name, d.department_name
+SELECT 
+    e.name, 
+    d.department_name
 FROM employees e
 LEFT JOIN departments d ON e.dept_id = d.dept_id;
 
 -- SELF JOIN - employees and their managers
-SELECT e.name AS employee, m.name AS manager
+SELECT 
+    e.name AS employee, 
+    m.name AS manager
 FROM employees e
 LEFT JOIN employees m ON e.manager_id = m.employee_id;
 
--- Multiple JOINs
-SELECT e.name, d.department_name, l.location
+-- Multiple JOINs with clear formatting
+SELECT 
+    e.name, 
+    d.department_name, 
+    l.location
 FROM employees e
 INNER JOIN departments d ON e.dept_id = d.dept_id
 INNER JOIN locations l ON d.location_id = l.location_id;
@@ -108,13 +127,18 @@ ON t1.col <=> t2.col
 
 ```sql
 -- Condition in ON clause (CORRECT for outer join behavior)
-SELECT c.name, o.order_date
+SELECT 
+    c.name, 
+    o.order_date
 FROM customers c
-LEFT JOIN orders o ON c.id = o.customer_id AND o.status = 'shipped';
+LEFT JOIN orders o ON c.id = o.customer_id 
+                   AND o.status = 'shipped';
 -- Returns ALL customers, orders only if status = 'shipped'
 
 -- Condition in WHERE clause (May turn into INNER JOIN)
-SELECT c.name, o.order_date
+SELECT 
+    c.name, 
+    o.order_date
 FROM customers c
 LEFT JOIN orders o ON c.id = o.customer_id
 WHERE o.status = 'shipped';

@@ -214,7 +214,10 @@ Yes, aggregate functions can be used in the SELECT list without a GROUP BY. In t
 ### **Imagine tables Employees (EmpID, FirstName, LastName, Salary) and Departments (DeptID, DeptName). How would you show employee full names (like 'LastName, FirstName') and their salaries?**
 
 ```sql
-SELECT LastName || ', ' || FirstName AS FullName, Salary
+-- Concatenate employee names and show salaries
+SELECT 
+    LastName || ', ' || FirstName AS FullName, 
+    Salary
 FROM Employees;
 ```
 
@@ -223,6 +226,7 @@ FROM Employees;
 ### **How would you write a query to show employee names and a new column 'SalaryGrade' based on their salary (e.g., 'Low' if salary < 50000, 'Medium' if between 50000 and 100000, 'High' if > 100000)?**
 
 ```sql
+-- Categorize employees by salary grade
 SELECT
     FirstName,
     LastName,
@@ -238,13 +242,17 @@ FROM Employees;
 ### **A product table has ProductName and UnitPrice. How do you display the ProductName and UnitPrice rounded to two decimal places?**
 
 ```sql
-SELECT ProductName, ROUND(UnitPrice, 2) AS RoundedPrice
+-- Display products with rounded prices
+SELECT 
+    ProductName, 
+    ROUND(UnitPrice, 2) AS RoundedPrice
 FROM Products;
 ```
 
 ### **You need a list of unique job titles from the Employees table. How do you get that?**
 
 ```sql
+-- Get distinct job titles
 SELECT DISTINCT JobTitle
 FROM Employees;
 ```
@@ -255,6 +263,7 @@ This can be done with a scalar subquery in SELECT or a window function.
 
 Using a scalar subquery:
 ```sql
+-- Show each employee with company average (scalar subquery approach)
 SELECT
     E.FirstName,
     E.LastName,
@@ -265,6 +274,7 @@ FROM Employees E;
 
 Using a window function (often better for performance):
 ```sql
+-- Show each employee with company average (window function approach)
 SELECT
     E.FirstName,
     E.LastName,
@@ -283,15 +293,19 @@ A correlated subquery in SELECT is problematic when the outer query returns many
 
 Example (problematic for a large Customers table):
 ```sql
+-- SLOW: Correlated subquery executes once per customer
 SELECT
     C.CustomerID,
     C.CustomerName,
-    (SELECT COUNT(O.OrderID) FROM Orders O WHERE O.CustomerID = C.CustomerID) AS OrderCount
+    (SELECT COUNT(O.OrderID) 
+     FROM Orders O 
+     WHERE O.CustomerID = C.CustomerID) AS OrderCount
 FROM Customers C;
 ```
 
 A more performant alternative often uses a LEFT JOIN with GROUP BY:
 ```sql
+-- BETTER: Set-based approach with JOIN and aggregation
 SELECT
     C.CustomerID,
     C.CustomerName,

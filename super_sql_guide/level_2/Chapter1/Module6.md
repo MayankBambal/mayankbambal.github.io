@@ -17,7 +17,11 @@ The basic syntax involves listing one or more columns: `ORDER BY column1, column
 
 Example:
 ```sql
-SELECT ProductName, Category, Price
+-- Sort products by category first, then by price (highest to lowest within each category)
+SELECT 
+    ProductName, 
+    Category, 
+    Price
 FROM Products
 ORDER BY Category ASC, Price DESC;
 ```
@@ -37,7 +41,11 @@ ORDER BY can sort by the result of an expression.
 
 Example:
 ```sql
-SELECT ProductName, UnitPrice, UnitsInStock
+-- Sort products by total inventory value (highest to lowest)
+SELECT 
+    ProductName, 
+    UnitPrice, 
+    UnitsInStock
 FROM Products
 ORDER BY (UnitPrice * UnitsInStock) DESC;
 ```
@@ -62,6 +70,11 @@ To explicitly control NULL placement, some DBMS support these keywords.
 
 Example (PostgreSQL/Oracle):
 ```sql
+-- Explicitly control NULL placement
+SELECT 
+    ProductName, 
+    ExpiryDate
+FROM Products
 ORDER BY ExpiryDate ASC NULLS FIRST;
 ```
 
@@ -70,7 +83,10 @@ For systems like SQL Server and MySQL, a CASE statement in ORDER BY can assign a
 
 Example for NULLS LAST with ASC sort (SQL Server/MySQL):
 ```sql
-SELECT ColumnName FROM MyTable
+-- Workaround to place NULLs last in ascending order
+SELECT 
+    ColumnName 
+FROM MyTable
 ORDER BY
     CASE WHEN ColumnName IS NULL THEN 1 ELSE 0 END ASC, -- Puts NULLs after non-NULLs
     ColumnName ASC;
@@ -109,7 +125,10 @@ ORDER BY can sort the summary rows produced by GROUP BY, based on grouping colum
 
 Example:
 ```sql
-SELECT DepartmentID, AVG(Salary) AS AverageSalary 
+-- Sort departments by average salary (highest to lowest)
+SELECT 
+    DepartmentID, 
+    AVG(Salary) AS AverageSalary 
 FROM Employees 
 GROUP BY DepartmentID 
 ORDER BY AverageSalary DESC;
@@ -169,7 +188,12 @@ Some DBMS (e.g., MySQL, PostgreSQL) allow sorting by column position. However, i
 ### **Task: List all employees, ordered by last name alphabetically. If last names are the same, then order by salary, highest first.**
 
 ```sql
-SELECT EmployeeID, FirstName, LastName, Salary
+-- Sort employees by last name, then by salary (highest first for ties)
+SELECT 
+    EmployeeID, 
+    FirstName, 
+    LastName, 
+    Salary
 FROM Employees
 ORDER BY LastName ASC, Salary DESC;
 ```
@@ -178,14 +202,20 @@ ORDER BY LastName ASC, Salary DESC;
 
 Using NULLS FIRST (e.g., PostgreSQL/Oracle):
 ```sql
-SELECT ProductName, ExpirationDate
+-- Show products with NULL expiration dates first
+SELECT 
+    ProductName, 
+    ExpirationDate
 FROM Products
 ORDER BY ExpirationDate ASC NULLS FIRST;
 ```
 
 Workaround for SQL Server/MySQL:
 ```sql
-SELECT ProductName, ExpirationDate
+-- Workaround for SQL Server/MySQL to show NULLs first
+SELECT 
+    ProductName, 
+    ExpirationDate
 FROM Products
 ORDER BY
     CASE WHEN ExpirationDate IS NULL THEN 0 ELSE 1 END ASC,
@@ -195,7 +225,10 @@ ORDER BY
 ### **A table Scores has PlayerID and Score. How to rank players by score, highest first?**
 
 ```sql
-SELECT PlayerID, Score
+-- Rank players by score (highest to lowest)
+SELECT 
+    PlayerID, 
+    Score
 FROM Scores
 ORDER BY Score DESC;
 ```

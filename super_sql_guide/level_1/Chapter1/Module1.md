@@ -10,8 +10,9 @@ The FROM clause tells the database which table (or tables) contains the data you
 
 Here's a simple example:
 ```sql
+-- Get employee names from the employees table
 SELECT name 
-FROM employees
+FROM employees;
 ```
 
 This says "I want to see names, and you can find them in the employees table."
@@ -25,8 +26,9 @@ Remember the processing order we talked about in the introduction? The FROM clau
 Sometimes table names are long and hard to type. You can give them shorter "nicknames" called aliases:
 
 ```sql
+-- Use alias 'e' for employees table
 SELECT e.name 
-FROM employees AS e
+FROM employees AS e;
 ```
 
 The `AS e` part gives the employees table a short nickname "e". Now instead of typing "employees" every time, you can just type "e". This becomes very helpful when working with multiple tables.
@@ -38,12 +40,17 @@ The `AS e` part gives the employees table a short nickname "e". Now instead of t
 Sometimes the data you need doesn't exist in a single table - you need to create it first. You can do this with a subquery in the FROM clause:
 
 ```sql
-SELECT dept_name, avg_salary
+-- Calculate department averages, then use results
+SELECT 
+    dept_name, 
+    avg_salary
 FROM (
-    SELECT department, AVG(salary) as avg_salary
+    SELECT 
+        department, 
+        AVG(salary) as avg_salary
     FROM employees
     GROUP BY department
-) AS dept_averages
+) AS dept_averages;
 ```
 
 This might look complex, but let's break it down:
@@ -72,9 +79,12 @@ JOINs connect rows from different tables based on related information. It's like
 An INNER JOIN only shows rows where there's a match in BOTH tables.
 
 ```sql
-SELECT e.name, d.department_name
+-- Join employees with departments to show department names
+SELECT 
+    e.name, 
+    d.department_name
 FROM employees e
-INNER JOIN departments d ON e.department_id = d.department_id
+INNER JOIN departments d ON e.department_id = d.department_id;
 ```
 
 This means:
@@ -90,9 +100,12 @@ This means:
 A LEFT JOIN shows ALL rows from the first (left) table, plus any matches from the second table.
 
 ```sql
-SELECT e.name, d.department_name
+-- LEFT JOIN: Show all employees, with department info if available
+SELECT 
+    e.name, 
+    d.department_name
 FROM employees e
-LEFT JOIN departments d ON e.department_id = d.department_id
+LEFT JOIN departments d ON e.department_id = d.department_id;
 ```
 
 This means:
@@ -107,9 +120,12 @@ This means:
 A RIGHT JOIN is the opposite of LEFT JOIN - it shows ALL rows from the second (right) table.
 
 ```sql
-SELECT e.name, d.department_name
+-- RIGHT JOIN: Show all departments, with employee info if available
+SELECT 
+    e.name, 
+    d.department_name
 FROM employees e
-RIGHT JOIN departments d ON e.department_id = d.department_id
+RIGHT JOIN departments d ON e.department_id = d.department_id;
 ```
 
 This means:

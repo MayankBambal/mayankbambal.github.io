@@ -30,7 +30,11 @@ Common in several open-source databases.
 
 Example (PostgreSQL/SQLite for 10 products starting from the 21st):
 ```sql
-SELECT ProductName, Price FROM Products
+-- Get products 21-30, ordered by price (highest to lowest)
+SELECT 
+    ProductName, 
+    Price 
+FROM Products
 ORDER BY Price DESC
 LIMIT 10 OFFSET 20;
 ```
@@ -45,7 +49,11 @@ Proprietary to Microsoft systems.
 
 Example (SQL Server, top 5 products by price, with ties):
 ```sql
-SELECT TOP 5 WITH TIES ProductName, Price FROM Products
+-- Get top 5 products by price, including ties
+SELECT TOP 5 WITH TIES 
+    ProductName, 
+    Price 
+FROM Products
 ORDER BY Price DESC;
 ```
 
@@ -57,8 +65,15 @@ Oracle uses ROWNUM, a number assigned to each row as it's selected, before sorti
 
 **Top-N Query Example** (top 10 most expensive products):
 ```sql
-SELECT ProductName, Price FROM (
-    SELECT ProductName, Price FROM Products
+-- Oracle: Get top 10 most expensive products using ROWNUM
+SELECT 
+    ProductName, 
+    Price 
+FROM (
+    SELECT 
+        ProductName, 
+        Price 
+    FROM Products
     ORDER BY Price DESC
 )
 WHERE ROWNUM <= 10;
@@ -66,9 +81,20 @@ WHERE ROWNUM <= 10;
 
 **Pagination Example** (products 11-20, ordered by price):
 ```sql
-SELECT ProductName, Price FROM (
-    SELECT ProductName, Price, ROWNUM AS rn FROM (
-        SELECT ProductName, Price FROM Products
+-- Oracle: Get products 11-20 using ROWNUM (for pagination)
+SELECT 
+    ProductName, 
+    Price 
+FROM (
+    SELECT 
+        ProductName, 
+        Price, 
+        ROWNUM AS rn 
+    FROM (
+        SELECT 
+            ProductName, 
+            Price 
+        FROM Products
         ORDER BY Price DESC
     )
     WHERE ROWNUM <= 20 -- Outer limit
@@ -84,7 +110,11 @@ The SQL standard way, often with an OFFSET clause.
 
 Example (Standard SQL, products 21-30, ordered by price):
 ```sql
-SELECT ProductName, Price FROM Products
+-- Standard SQL: Get products 21-30 using FETCH FIRST
+SELECT 
+    ProductName, 
+    Price 
+FROM Products
 ORDER BY Price DESC
 OFFSET 20 ROWS
 FETCH NEXT 10 ROWS ONLY;
@@ -136,7 +166,12 @@ Due to large offset issues, Keyset Pagination (or "seek method") is often better
 
 Example (sorting by CreationDate DESC, PostID DESC):
 ```sql
-SELECT PostID, Title, CreationDate FROM Posts
+-- Keyset pagination: More efficient for large datasets
+SELECT 
+    PostID, 
+    Title, 
+    CreationDate 
+FROM Posts
 WHERE (CreationDate < :lastSeenCreationDate)
    OR (CreationDate = :lastSeenCreationDate AND PostID < :lastSeenPostID)
 ORDER BY CreationDate DESC, PostID DESC
@@ -191,7 +226,11 @@ LIMIT OFFSET is simple but slows down as the OFFSET value grows, especially on l
 ### **MySQL task: Get the 11th to 20th priciest products.**
 
 ```sql
-SELECT ProductName, Price FROM Products
+-- MySQL: Get products 11-20 by price (highest to lowest)
+SELECT 
+    ProductName, 
+    Price 
+FROM Products
 ORDER BY Price DESC
 LIMIT 10 OFFSET 10; -- Skips 10 rows, takes next 10
 ```
@@ -199,7 +238,10 @@ LIMIT 10 OFFSET 10; -- Skips 10 rows, takes next 10
 ### **SQL Server challenge: Top 5 highest-paid employees. And if there's a tie for 5th place salary, all of them should be included!**
 
 ```sql
-SELECT TOP 5 WITH TIES EmployeeName, Salary
+-- SQL Server: Top 5 employees with ties included
+SELECT TOP 5 WITH TIES 
+    EmployeeName, 
+    Salary
 FROM Employees
 ORDER BY Salary DESC;
 ```
@@ -208,28 +250,25 @@ ORDER BY Salary DESC;
 
 Using FETCH FIRST for Oracle 12c+:
 ```sql
-SELECT DISTINCT Salary FROM Employees
+-- Oracle 12c+: Find 3rd highest distinct salary
+SELECT DISTINCT Salary 
+FROM Employees
 ORDER BY Salary DESC
 OFFSET 2 ROWS FETCH NEXT 1 ROW ONLY;
 ```
 
 Using ROWNUM for older Oracle versions or as an alternative (one way):
 ```sql
-SELECT Salary FROM (
-    SELECT Salary, DENSE_RANK() OVER (ORDER BY Salary DESC) as SalRank
+-- Oracle (older versions): 3rd highest distinct salary using DENSE_RANK
+SELECT 
+    Salary 
+FROM (
+    SELECT 
+        Salary, 
+        DENSE_RANK() OVER (ORDER BY Salary DESC) as SalRank
     FROM (SELECT DISTINCT Salary FROM Employees)
 )
 WHERE SalRank = 3;
-```
-
-Or, for just the 3rd row from distinct salaries using ROWNUM:
-```sql
-SELECT Salary FROM (
-    SELECT Salary, ROWNUM AS rn FROM (
-        SELECT DISTINCT Salary FROM Employees ORDER BY Salary DESC
-    )
-    WHERE ROWNUM <= 3
-) WHERE rn = 3;
 ```
 
 ### **Standard SQL time: How would one get 50% of products, ordered by name, but skip the first 10?**

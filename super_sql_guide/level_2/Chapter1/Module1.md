@@ -27,9 +27,14 @@ In the logical processing order of an SQL query, the FROM clause is evaluated fi
 - **Syntax**: The subquery must be enclosed in parentheses and must be assigned an alias. For example:
 
 ```sql
-SELECT D.DepartmentName, D.AvgSalary
+-- Calculate departments with average salary > $50,000
+SELECT 
+    D.DepartmentName, 
+    D.AvgSalary
 FROM (
-    SELECT DepartmentID, AVG(Salary) AS AvgSalary
+    SELECT 
+        DepartmentID, 
+        AVG(Salary) AS AvgSalary
     FROM Employees
     GROUP BY DepartmentID
 ) AS D
@@ -142,16 +147,25 @@ This is a subtle but critical point: the purpose of an outer join, such as a LEF
 
 For example, in:
 ```sql
-SELECT c.CustomerName, o.OrderID 
+-- This query filters out customers without orders due to WHERE clause placement
+SELECT 
+    c.CustomerName, 
+    o.OrderID 
 FROM Customers c 
 LEFT JOIN Orders o ON c.CustomerID = o.CustomerID 
-WHERE o.OrderDate > '2023-01-01'
+WHERE o.OrderDate > '2023-01-01';
 ```
 
 Customers with no orders will have `o.OrderDate` as NULL. The condition `NULL > '2023-01-01'` evaluates to UNKNOWN (effectively false for filtering), so these customers are removed, making the query behave like an INNER JOIN for the OrderDate filter. If the intent was to see all customers, and for those with orders, only orders after '2023-01-01', the condition should be in the ON clause:
 
 ```sql
-LEFT JOIN Orders o ON c.CustomerID = o.CustomerID AND o.OrderDate > '2023-01-01'
+-- Correct placement: condition in ON clause preserves LEFT JOIN behavior
+SELECT 
+    c.CustomerName, 
+    o.OrderID 
+FROM Customers c 
+LEFT JOIN Orders o ON c.CustomerID = o.CustomerID 
+                   AND o.OrderDate > '2023-01-01';
 ```
 
 ### Joining on NULL Values
@@ -193,7 +207,10 @@ A derived table is essentially a subquery used within the FROM clause of an oute
 **"Imagine you have two tables: Employees (with EmployeeID, Name, DepartmentID) and Departments (with DepartmentID, DepartmentName). How would you list all employees along with their department names?"**
 
 ```sql
-SELECT E.Name, D.DepartmentName
+-- List employees with their department names
+SELECT 
+    E.Name, 
+    D.DepartmentName
 FROM Employees E
 INNER JOIN Departments D ON E.DepartmentID = D.DepartmentID;
 ```
@@ -203,7 +220,9 @@ This query uses an INNER JOIN because the typical requirement is to list employe
 **"How would you find all customers who have never placed an order? Assume Customers (CustomerID, CustomerName) and Orders (OrderID, CustomerID, OrderDate) tables."**
 
 ```sql
-SELECT C.CustomerName
+-- Find customers with no orders using LEFT JOIN and NULL check
+SELECT 
+    C.CustomerName
 FROM Customers C
 LEFT JOIN Orders O ON C.CustomerID = O.CustomerID
 WHERE O.OrderID IS NULL;
@@ -214,7 +233,10 @@ WHERE O.OrderID IS NULL;
 **"You have a table Products (ProductID, ProductName) and ProductSales (SaleID, ProductID, SaleDate, SaleAmount). How would you get a list of all products and their total sales amount, ensuring you only include products that had at least one sale?"**
 
 ```sql
-SELECT P.ProductName, SUM(S.SaleAmount) AS TotalSales
+-- Products with their total sales (only products that have sales)
+SELECT 
+    P.ProductName, 
+    SUM(S.SaleAmount) AS TotalSales
 FROM Products P
 INNER JOIN ProductSales S ON P.ProductID = S.ProductID
 GROUP BY P.ProductID, P.ProductName
