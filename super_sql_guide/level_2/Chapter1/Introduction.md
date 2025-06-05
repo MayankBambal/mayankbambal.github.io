@@ -22,74 +22,202 @@ Many common SQL errors and misunderstandings arise from a lack of awareness of t
 
 ## The Logical Query Processing Order
 
-The typical logical query processing order follows a specific flow that differs from how we write SQL queries. Understanding this flow is crucial for writing correct and efficient SQL:
-
-<div style="text-align: center; font-family: monospace; line-height: 2.5;">
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    🗃️  STEP 1: FROM & JOINs                 │
-│               Identify and combine data sources             │
-│                  (Tables, Views, Subqueries)               │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                     🔍  STEP 2: WHERE                      │
-│                Filter individual rows                       │
-│              (Before any grouping occurs)                  │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   📊  STEP 3: GROUP BY                     │
-│              Group rows by common values                   │
-│               (Creates groups for aggregation)             │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                     ⚖️  STEP 4: HAVING                      │
-│                 Filter grouped results                     │
-│            (After grouping, using aggregates)             │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    📋  STEP 5: SELECT                      │
-│              Choose columns and expressions                │
-│                (Defines final output structure)            │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    🎯  STEP 6: DISTINCT                    │
-│                 Remove duplicate rows                      │
-│              (If specified in the query)                  │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   📶  STEP 7: ORDER BY                     │
-│                Sort the final result set                   │
-│            (Determines presentation order)                 │
-└─────────────────────┬───────────────────────────────────────┘
-                      │
-                      ▼
-┌─────────────────────────────────────────────────────────────┐
-│                 ✂️  STEP 8: LIMIT/OFFSET                   │
-│               Restrict number of rows returned             │
-│                  (TOP in SQL Server)                       │
-└─────────────────────────────────────────────────────────────┘
-```
-
+<div class="sql-processing-flow">
+  <div class="flow-container">
+    <div class="flow-step step-1">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h3>FROM and JOINs</h3>
+        <p>Identify and combine data sources</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+    </div>
+    
+    <div class="flow-step step-2">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h3>WHERE</h3>
+        <p>Filter individual rows</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+    </div>
+    
+    <div class="flow-step step-3">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h3>GROUP BY</h3>
+        <p>Group rows by common values</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+    </div>
+    
+    <div class="flow-step step-4">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <h3>HAVING</h3>
+        <p>Filter groups based on aggregates</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+    </div>
+    
+    <div class="flow-step step-5">
+      <div class="step-number">5</div>
+      <div class="step-content">
+        <h3>SELECT</h3>
+        <p>Choose columns and expressions</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+    </div>
+    
+    <div class="flow-step step-6">
+      <div class="step-number">6</div>
+      <div class="step-content">
+        <h3>DISTINCT</h3>
+        <p>Remove duplicate rows</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+    </div>
+    
+    <div class="flow-step step-7">
+      <div class="step-number">7</div>
+      <div class="step-content">
+        <h3>ORDER BY</h3>
+        <p>Sort the final result set</p>
+      </div>
+      <div class="flow-arrow">↓</div>
+    </div>
+    
+    <div class="flow-step step-8">
+      <div class="step-number">8</div>
+      <div class="step-content">
+        <h3>LIMIT / OFFSET</h3>
+        <p>Restrict number of returned rows</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-### 🔑 Key Insights for Interview Success:
+<style>
+.sql-processing-flow {
+  margin: 2rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
 
-- **Write vs. Execute**: We write `SELECT` first, but the database processes `FROM` first
-- **Alias Limitations**: Column aliases defined in `SELECT` can't be used in `WHERE` (processed earlier)
-- **Grouping Logic**: `WHERE` filters before grouping, `HAVING` filters after grouping
-- **Performance Impact**: Understanding this order helps optimize query performance
+.flow-container {
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flow-step:hover {
+  transform: translateX(4px);
+}
+
+.flow-step:last-child {
+  margin-bottom: 0;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.step-content {
+  background: white;
+  margin-left: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  flex-grow: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.step-content h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.step-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.flow-arrow {
+  position: absolute;
+  left: 19px;
+  top: 50px;
+  color: #94a3b8;
+  font-size: 1.5rem;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.flow-step:last-child .flow-arrow {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .sql-processing-flow {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .flow-container {
+    max-width: 100%;
+  }
+  
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .step-content {
+    padding: 0.75rem 1rem;
+  }
+  
+  .step-content h3 {
+    font-size: 1rem;
+  }
+  
+  .step-content p {
+    font-size: 0.85rem;
+  }
+  
+  .flow-arrow {
+    left: 17px;
+    top: 45px;
+    font-size: 1.25rem;
+  }
+}
+</style>
 
 This guide will continually refer to this execution order to clarify the behavior and constraints of each SQL clause.

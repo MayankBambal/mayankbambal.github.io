@@ -9,12 +9,15 @@ This document summarizes the formatting improvements made to all SQL code exampl
 - **Renamed "Chapter" to "Module"**: Changed all main headings from "Chapter X:" to "Module X:" across both level_1 and level_2 directories for consistency and better organization
 - **Maintained numbering**: Kept the same numbering system (Module 1 through Module 7) to preserve logical progression
 
-### 2. **Enhanced Visual Flow Diagrams**
-- **SQL Query Processing Order**: Converted plain numbered lists to visually appealing flowcharts with arrows, boxes, and emojis
-- **Website-ready formatting**: Added HTML div containers with CSS styling for better web presentation
-- **Interactive elements**: Added visual cues like arrows (▼), boxes (┌─┐), and emojis (🗃️, 🔍, 📊) to make flows engaging
-- **Consistent styling**: Applied similar visual treatment across level_1, level_2, and cheat_sheet versions
-- **Educational enhancements**: Added key insights and explanatory notes alongside visual flows
+### 2. **Web-Styled Flow Diagrams**
+- **Interactive Processing Flows**: Converted all SQL processing order lists into beautiful, web-ready flow diagrams with hover effects and responsive design
+- **Level-specific styling**: 
+  - **Level 2 (Advanced)**: Professional blue gradient flows with detailed descriptions
+  - **Level 1 (Beginner)**: Warm orange/yellow flows with simplified language
+  - **Cheat Sheet**: Compact horizontal flows for quick reference
+  - **Mini flows**: Smaller contextual flows within modules with highlighting for current topic
+- **Responsive design**: All flows adapt to mobile and desktop viewing
+- **Visual hierarchy**: Uses numbered steps, arrows, and color coding for better understanding
 
 ### 3. **Consistent SQL Formatting**
 - **Multi-line SELECT statements**: Broke down single-line SELECT statements into multiple lines with proper indentation
@@ -63,6 +66,27 @@ INNER JOIN Departments D ON E.DepartmentID = D.DepartmentID;
 - Quick reference format with consistent styling
 - Concise but complete examples
 - Clear categorization of different SQL patterns
+
+## Flow Diagram Improvements
+
+### Interactive Web-Ready Flow Designs
+
+**Main Processing Order Flows:**
+- **level_2/Introduction.md**: Professional vertical flow with gradient background and hover effects
+- **level_1/Introduction.md**: Beginner-friendly flow with warm colors and simple explanations
+- **cheat_sheet/Introduction.md**: Compact horizontal flow perfect for quick reference
+
+**Contextual Mini-Flows:**
+- **level_1/Module4.md**: Processing order flow with highlighted HAVING step
+- **level_1/Module4.md**: Combined WHERE/HAVING processing flow
+- **level_1/Introduction.md**: Simple 3-step example flow
+
+**Flow Features:**
+- Responsive design that adapts to mobile and desktop
+- Hover animations and visual feedback
+- Color-coded step numbers and descriptions
+- Professional CSS gradients and shadows
+- Clear visual hierarchy with arrows and spacing
 
 ## Files Modified
 

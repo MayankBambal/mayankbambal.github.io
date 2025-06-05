@@ -22,11 +22,128 @@ Think of it this way:
 ### When it happens
 
 HAVING comes after GROUP BY in our processing order:
-1. **FROM** - Get the data from tables
-2. **WHERE** - Filter individual rows
-3. **GROUP BY** - Group the remaining rows
-4. **HAVING** - Filter the groups
-5. **SELECT** - Show the results
+
+<div class="mini-sql-flow">
+  <div class="mini-flow-step">
+    <span class="mini-step-number">1</span>
+    <span class="mini-step-text"><strong>FROM</strong> - Get the data from tables</span>
+  </div>
+  <div class="mini-flow-arrow">↓</div>
+  
+  <div class="mini-flow-step">
+    <span class="mini-step-number">2</span>
+    <span class="mini-step-text"><strong>WHERE</strong> - Filter individual rows</span>
+  </div>
+  <div class="mini-flow-arrow">↓</div>
+  
+  <div class="mini-flow-step">
+    <span class="mini-step-number">3</span>
+    <span class="mini-step-text"><strong>GROUP BY</strong> - Group the remaining rows</span>
+  </div>
+  <div class="mini-flow-arrow">↓</div>
+  
+  <div class="mini-flow-step mini-highlight">
+    <span class="mini-step-number">4</span>
+    <span class="mini-step-text"><strong>HAVING</strong> - Filter the groups</span>
+  </div>
+  <div class="mini-flow-arrow">↓</div>
+  
+  <div class="mini-flow-step">
+    <span class="mini-step-number">5</span>
+    <span class="mini-step-text"><strong>SELECT</strong> - Show the results</span>
+  </div>
+</div>
+
+<style>
+.mini-sql-flow {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 10px;
+  border: 2px solid #f59e0b;
+  max-width: 400px;
+}
+
+.mini-flow-step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.mini-flow-step:hover {
+  transform: translateX(2px);
+}
+
+.mini-flow-step:last-of-type {
+  margin-bottom: 0;
+}
+
+.mini-highlight {
+  background: #fef3c7 !important;
+  border: 2px solid #f59e0b;
+  font-weight: 600;
+}
+
+.mini-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #f59e0b;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.mini-highlight .mini-step-number {
+  background: #d97706;
+}
+
+.mini-step-text {
+  font-size: 0.9rem;
+  color: #92400e;
+  line-height: 1.3;
+}
+
+.mini-flow-arrow {
+  text-align: center;
+  color: #d97706;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.25rem 0;
+}
+
+@media (max-width: 640px) {
+  .mini-sql-flow {
+    max-width: 100%;
+    padding: 0.75rem;
+  }
+  
+  .mini-flow-step {
+    padding: 0.4rem;
+  }
+  
+  .mini-step-number {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+  }
+  
+  .mini-step-text {
+    font-size: 0.85rem;
+  }
+}
+</style>
 
 ## 4.2. WHERE vs HAVING - What's the Difference?
 
@@ -124,10 +241,95 @@ HAVING COUNT(*) > 3;           -- Only show departments with more than 3 people
 ```
 
 **Processing order:**
-1. WHERE removes all interns from consideration
-2. GROUP BY groups the remaining employees by department  
-3. HAVING only keeps departments with more than 3 employees
-4. SELECT shows the final results
+
+<div class="mini-process-flow">
+  <div class="process-step">
+    <span class="process-num">1</span>
+    <span class="process-text"><strong>WHERE</strong> removes all interns from consideration</span>
+  </div>
+  <div class="process-arrow">↓</div>
+  
+  <div class="process-step">
+    <span class="process-num">2</span>
+    <span class="process-text"><strong>GROUP BY</strong> groups the remaining employees by department</span>
+  </div>
+  <div class="process-arrow">↓</div>
+  
+  <div class="process-step">
+    <span class="process-num">3</span>
+    <span class="process-text"><strong>HAVING</strong> only keeps departments with more than 3 employees</span>
+  </div>
+  <div class="process-arrow">↓</div>
+  
+  <div class="process-step">
+    <span class="process-num">4</span>
+    <span class="process-text"><strong>SELECT</strong> shows the final results</span>
+  </div>
+</div>
+
+<style>
+.mini-process-flow {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 4px solid #10b981;
+  max-width: 450px;
+}
+
+.process-step {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.4rem;
+  padding: 0.3rem;
+}
+
+.process-step:last-of-type {
+  margin-bottom: 0;
+}
+
+.process-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #10b981;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-right: 0.6rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.process-text {
+  font-size: 0.85rem;
+  color: #374151;
+  line-height: 1.4;
+}
+
+.process-arrow {
+  text-align: center;
+  color: #10b981;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0.2rem 0;
+  margin-left: 10px;
+}
+
+@media (max-width: 640px) {
+  .mini-process-flow {
+    max-width: 100%;
+    padding: 0.6rem;
+  }
+  
+  .process-text {
+    font-size: 0.8rem;
+  }
+}
+</style>
 
 ## 4.5. Common HAVING Mistakes
 
