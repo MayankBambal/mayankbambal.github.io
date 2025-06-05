@@ -1021,6 +1021,13 @@
                     const html = this.markdownToHtml(markdown);
                     contentArea.innerHTML = html;
                     
+                    // Render Mermaid diagrams after content is loaded
+                    setTimeout(() => {
+                        if (window.renderMermaidDiagrams) {
+                            window.renderMermaidDiagrams();
+                        }
+                    }, 100);
+                    
                     this.currentChapter = chapter;
                     this.currentModule = module;
                     this.updateActiveModule();
@@ -1046,6 +1053,9 @@
                 // Bold and italic
                 html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                 html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+                
+                // Mermaid diagrams (process before other code blocks)
+                html = html.replace(/```mermaid\n([\s\S]*?)\n```/g, '<div class="mermaid">$1</div>');
                 
                 // Code blocks
                 html = html.replace(/```sql\n([\s\S]*?)\n```/g, '<pre><code>$1</code></pre>');
@@ -1148,6 +1158,35 @@
         document.addEventListener('DOMContentLoaded', () => {
             new SQLGuide();
         });
+    </script>
+    
+    <!-- Mermaid.js for flow diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#f59e0b',
+                primaryTextColor: '#ffffff',
+                primaryBorderColor: '#d97706',
+                lineColor: '#92400e',
+                secondaryColor: '#fef3c7',
+                background: '#ffffff',
+                fontSize: '18px'
+            },
+            flowchart: {
+                curve: 'basis',
+                padding: 20
+            },
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+        });
+        
+        // Function to render Mermaid diagrams after content is loaded
+        window.renderMermaidDiagrams = function() {
+            mermaid.run();
+        };
     </script>
 </body>
 </html> 
