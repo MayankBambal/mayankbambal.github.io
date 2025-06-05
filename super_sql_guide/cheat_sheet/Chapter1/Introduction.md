@@ -8,176 +8,33 @@ This cheat sheet provides a quick reference for SQL fundamentals, organized by t
 
 **The most important concept in SQL** - Understanding this order explains alias scope, WHERE vs. HAVING usage, and overall query behavior:
 
-<div class="sql-cheat-flow">
-  <div class="cheat-flow-header">
-    <h4>🚀 SQL Execution Order</h4>
-  </div>
-  <div class="cheat-flow-container">
-    <div class="cheat-flow-step">
-      <span class="cheat-step-num">1</span>
-      <code>FROM</code> & <code>JOIN</code>
-      <span class="cheat-step-desc">Define sources</span>
-    </div>
-    <span class="cheat-arrow">→</span>
+```mermaid
+---
+config:
+  theme: base
+  themeVariables:
+    primaryColor: '#0ea5e9'
+    primaryTextColor: '#ffffff'
+    primaryBorderColor: '#0284c7'
+    lineColor: '#64748b'
+    secondaryColor: '#f0f9ff'
+    background: '#ffffff'
+    fontSize: '16px'
+---
+flowchart LR
+    A["🚀 1. FROM & JOIN<br/>Define sources"] 
+    B["🔍 2. WHERE<br/>Filter rows"]
+    C["📊 3. GROUP BY<br/>Group rows"]
+    D["✅ 4. HAVING<br/>Filter groups"]
+    E["📋 5. SELECT<br/>Choose columns"]
+    F["🔄 6. DISTINCT<br/>Remove dupes"]
+    G["📈 7. ORDER BY<br/>Sort results"]
+    H["📏 8. LIMIT<br/>Restrict rows"]
     
-    <div class="cheat-flow-step">
-      <span class="cheat-step-num">2</span>
-      <code>WHERE</code>
-      <span class="cheat-step-desc">Filter rows</span>
-    </div>
-    <span class="cheat-arrow">→</span>
+    A --> B --> C --> D --> E --> F --> G --> H
     
-    <div class="cheat-flow-step">
-      <span class="cheat-step-num">3</span>
-      <code>GROUP BY</code>
-      <span class="cheat-step-desc">Group rows</span>
-    </div>
-    <span class="cheat-arrow">→</span>
-    
-    <div class="cheat-flow-step">
-      <span class="cheat-step-num">4</span>
-      <code>HAVING</code>
-      <span class="cheat-step-desc">Filter groups</span>
-    </div>
-    <span class="cheat-arrow">→</span>
-    
-    <div class="cheat-flow-step">
-      <span class="cheat-step-num">5</span>
-      <code>SELECT</code>
-      <span class="cheat-step-desc">Choose columns</span>
-    </div>
-    <span class="cheat-arrow">→</span>
-    
-    <div class="cheat-flow-step">
-      <span class="cheat-step-num">6</span>
-      <code>DISTINCT</code>
-      <span class="cheat-step-desc">Remove dupes</span>
-    </div>
-    <span class="cheat-arrow">→</span>
-    
-    <div class="cheat-flow-step">
-      <span class="cheat-step-num">7</span>
-      <code>ORDER BY</code>
-      <span class="cheat-step-desc">Sort results</span>
-    </div>
-    <span class="cheat-arrow">→</span>
-    
-    <div class="cheat-flow-step">
-      <span class="cheat-step-num">8</span>
-      <code>LIMIT</code>
-      <span class="cheat-step-desc">Restrict rows</span>
-    </div>
-  </div>
-</div>
-
-<style>
-.sql-cheat-flow {
-  margin: 1.5rem 0;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-  border-radius: 12px;
-  border: 2px solid #0ea5e9;
-  box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.1);
-}
-
-.cheat-flow-header h4 {
-  margin: 0 0 1rem 0;
-  color: #0c4a6e;
-  font-size: 1.1rem;
-  text-align: center;
-  font-weight: 600;
-}
-
-.cheat-flow-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.cheat-flow-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: white;
-  padding: 0.75rem 0.5rem;
-  border-radius: 8px;
-  min-width: 80px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid #bae6fd;
-  transition: transform 0.2s ease;
-}
-
-.cheat-flow-step:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-.cheat-step-num {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background: #0ea5e9;
-  color: white;
-  border-radius: 50%;
-  font-size: 0.75rem;
-  font-weight: bold;
-  line-height: 20px;
-  text-align: center;
-  margin-bottom: 0.25rem;
-}
-
-.cheat-flow-step code {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #0c4a6e;
-  background: none;
-  padding: 0;
-  margin-bottom: 0.25rem;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-}
-
-.cheat-step-desc {
-  font-size: 0.7rem;
-  color: #475569;
-  line-height: 1.2;
-}
-
-.cheat-arrow {
-  color: #0ea5e9;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 0 0.25rem;
-}
-
-/* Responsive - stack vertically on small screens */
-@media (max-width: 768px) {
-  .cheat-flow-container {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .cheat-arrow {
-    transform: rotate(90deg);
-    margin: 0;
-  }
-  
-  .cheat-flow-step {
-    min-width: 120px;
-    padding: 1rem 0.75rem;
-  }
-  
-  .cheat-flow-step code {
-    font-size: 0.9rem;
-  }
-  
-  .cheat-step-desc {
-    font-size: 0.8rem;
-  }
-}
-</style>
+    classDef default fill:#f0f9ff,stroke:#0ea5e9,stroke-width:2px,color:#0c4a6e,font-weight:bold
+```
 
 > **💡 Key Point**: This execution order is logical, not necessarily the physical order. Understanding it helps you write correct, efficient SQL.
 

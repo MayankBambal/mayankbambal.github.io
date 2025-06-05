@@ -22,202 +22,93 @@ Many common SQL errors and misunderstandings arise from a lack of awareness of t
 
 ## The Logical Query Processing Order
 
-<div class="sql-processing-flow">
-  <div class="flow-container">
-    <div class="flow-step step-1">
-      <div class="step-number">1</div>
-      <div class="step-content">
-        <h3>FROM and JOINs</h3>
-        <p>Identify and combine data sources</p>
-      </div>
-      <div class="flow-arrow">↓</div>
-    </div>
+```mermaid
+---
+config:
+  theme: base
+  themeVariables:
+    primaryColor: '#3b82f6'
+    primaryTextColor: '#ffffff'
+    primaryBorderColor: '#1d4ed8'
+    lineColor: '#6b7280'
+    secondaryColor: '#f8fafc'
+    background: '#ffffff'
+    fontSize: '16px'
+---
+flowchart TD
+    A["🔍 1. FROM and JOINs<br/>Identify and combine data sources"] 
+    B["🔧 2. WHERE<br/>Filter individual rows"]
+    C["📊 3. GROUP BY<br/>Group rows by common values"]
+    D["✅ 4. HAVING<br/>Filter groups based on aggregates"]
+    E["📋 5. SELECT<br/>Choose columns and expressions"]
+    F["🔄 6. DISTINCT<br/>Remove duplicate rows"]
+    G["📈 7. ORDER BY<br/>Sort the final result set"]
+    H["📏 8. LIMIT/OFFSET<br/>Restrict number of returned rows"]
     
-    <div class="flow-step step-2">
-      <div class="step-number">2</div>
-      <div class="step-content">
-        <h3>WHERE</h3>
-        <p>Filter individual rows</p>
-      </div>
-      <div class="flow-arrow">↓</div>
-    </div>
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
     
-    <div class="flow-step step-3">
-      <div class="step-number">3</div>
-      <div class="step-content">
-        <h3>GROUP BY</h3>
-        <p>Group rows by common values</p>
-      </div>
-      <div class="flow-arrow">↓</div>
-    </div>
+    classDef default fill:#f8fafc,stroke:#3b82f6,stroke-width:2px,color:#1e293b
+    classDef highlight fill:#3b82f6,stroke:#1d4ed8,stroke-width:3px,color:#ffffff
+```
+
+### Interactive Flow Diagram
+
+For a more detailed understanding, here's an enhanced version that shows the data transformation at each step:
+
+```mermaid
+---
+config:
+  theme: base
+  themeVariables:
+    primaryColor: '#059669'
+    primaryTextColor: '#ffffff'
+    primaryBorderColor: '#047857'
+    lineColor: '#6b7280'
+    fontSize: '14px'
+---
+flowchart TD
+    START([SQL Query Input]) --> FROM
     
-    <div class="flow-step step-4">
-      <div class="step-number">4</div>
-      <div class="step-content">
-        <h3>HAVING</h3>
-        <p>Filter groups based on aggregates</p>
-      </div>
-      <div class="flow-arrow">↓</div>
-    </div>
+    subgraph "Phase 1: Data Assembly"
+        FROM["🔍 FROM & JOINs<br/>📁 Combine Tables<br/>🔗 Apply Join Conditions"]
+        WHERE["🔧 WHERE<br/>🎯 Filter Rows<br/>❌ Remove Unwanted Data"]
+    end
     
-    <div class="flow-step step-5">
-      <div class="step-number">5</div>
-      <div class="step-content">
-        <h3>SELECT</h3>
-        <p>Choose columns and expressions</p>
-      </div>
-      <div class="flow-arrow">↓</div>
-    </div>
+    subgraph "Phase 2: Grouping & Aggregation"
+        GROUP["📊 GROUP BY<br/>🗂️ Create Row Groups<br/>📈 Prepare for Aggregates"]
+        HAVING["✅ HAVING<br/>🔍 Filter Groups<br/>📊 Test Aggregate Conditions"]
+    end
     
-    <div class="flow-step step-6">
-      <div class="step-number">6</div>
-      <div class="step-content">
-        <h3>DISTINCT</h3>
-        <p>Remove duplicate rows</p>
-      </div>
-      <div class="flow-arrow">↓</div>
-    </div>
+    subgraph "Phase 3: Output Formatting"
+        SELECT["📋 SELECT<br/>🎨 Choose Columns<br/>🧮 Calculate Expressions"]
+        DISTINCT["🔄 DISTINCT<br/>🧹 Remove Duplicates<br/>✨ Unique Results Only"]
+        ORDER["📈 ORDER BY<br/>🔢 Sort Results<br/>📊 Final Arrangement"]
+        LIMIT["📏 LIMIT/OFFSET<br/>✂️ Restrict Rows<br/>📄 Pagination"]
+    end
     
-    <div class="flow-step step-7">
-      <div class="step-number">7</div>
-      <div class="step-content">
-        <h3>ORDER BY</h3>
-        <p>Sort the final result set</p>
-      </div>
-      <div class="flow-arrow">↓</div>
-    </div>
+    RESULT([Final Result Set])
     
-    <div class="flow-step step-8">
-      <div class="step-number">8</div>
-      <div class="step-content">
-        <h3>LIMIT / OFFSET</h3>
-        <p>Restrict number of returned rows</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<style>
-.sql-processing-flow {
-  margin: 2rem 0;
-  padding: 2rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  border-radius: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.flow-container {
-  max-width: 500px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.flow-step {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.flow-step:hover {
-  transform: translateX(4px);
-}
-
-.flow-step:last-child {
-  margin-bottom: 0;
-}
-
-.step-number {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.1rem;
-  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
-  flex-shrink: 0;
-  z-index: 2;
-}
-
-.step-content {
-  background: white;
-  margin-left: 1rem;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-  flex-grow: 1;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e2e8f0;
-}
-
-.step-content h3 {
-  margin: 0 0 0.25rem 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1e293b;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-}
-
-.step-content p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #64748b;
-  line-height: 1.4;
-}
-
-.flow-arrow {
-  position: absolute;
-  left: 19px;
-  top: 50px;
-  color: #94a3b8;
-  font-size: 1.5rem;
-  font-weight: bold;
-  z-index: 1;
-}
-
-.flow-step:last-child .flow-arrow {
-  display: none;
-}
-
-/* Responsive adjustments */
-@media (max-width: 640px) {
-  .sql-processing-flow {
-    padding: 1rem;
-    margin: 1rem 0;
-  }
-  
-  .flow-container {
-    max-width: 100%;
-  }
-  
-  .step-number {
-    width: 35px;
-    height: 35px;
-    font-size: 1rem;
-  }
-  
-  .step-content {
-    padding: 0.75rem 1rem;
-  }
-  
-  .step-content h3 {
-    font-size: 1rem;
-  }
-  
-  .step-content p {
-    font-size: 0.85rem;
-  }
-  
-  .flow-arrow {
-    left: 17px;
-    top: 45px;
-    font-size: 1.25rem;
-  }
-}
-</style>
+    FROM --> WHERE
+    WHERE --> GROUP
+    GROUP --> HAVING
+    HAVING --> SELECT
+    SELECT --> DISTINCT
+    DISTINCT --> ORDER
+    ORDER --> LIMIT
+    LIMIT --> RESULT
+    
+    classDef phaseBox fill:#f0fdf4,stroke:#059669,stroke-width:2px
+    classDef startEnd fill:#1f2937,stroke:#374151,stroke-width:2px,color:#ffffff
+    classDef process fill:#ffffff,stroke:#059669,stroke-width:2px,color:#064e3b
+    
+    class START,RESULT startEnd
+    class FROM,WHERE,GROUP,HAVING,SELECT,DISTINCT,ORDER,LIMIT process
+```
 
 This guide will continually refer to this execution order to clarify the behavior and constraints of each SQL clause.
