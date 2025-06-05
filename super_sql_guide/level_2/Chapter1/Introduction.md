@@ -61,9 +61,9 @@ flowchart TD
 
 </div>
 
-### Interactive Flow Diagram
+### Enhanced Flow Diagram with Sample Code
 
-For a more detailed understanding, here's an enhanced version that shows the data transformation at each step:
+For a more detailed understanding, here's an enhanced version that shows sample SQL code for each processing step:
 
 <div align="center">
 
@@ -76,29 +76,29 @@ config:
     primaryTextColor: '#ffffff'
     primaryBorderColor: '#1a202c'
     lineColor: '#4a5568'
-    fontSize: '14px'
+    fontSize: '12px'
 ---
 flowchart TD
-    START([SQL Query Input]) --> FROM
+    START([SELECT dept, COUNT(*), AVG(salary)<br/>FROM employees e<br/>JOIN departments d ON e.dept_id = d.id<br/>WHERE salary > 50000<br/>GROUP BY dept<br/>HAVING COUNT(*) > 10<br/>ORDER BY COUNT(*) DESC<br/>LIMIT 5]) --> FROM
     
     subgraph "Phase 1: Data Assembly"
-        FROM["FROM & JOINs<br/>Combine Tables<br/>Apply Join Conditions"]
-        WHERE["WHERE<br/>Filter Rows<br/>Remove Unwanted Data"]
+        FROM["1. FROM & JOINs<br/>FROM employees e<br/>JOIN departments d ON e.dept_id = d.id<br/>→ Combine employee and department tables"]
+        WHERE["2. WHERE<br/>WHERE salary > 50000<br/>→ Filter employees with salary > $50k"]
     end
     
     subgraph "Phase 2: Grouping & Aggregation"
-        GROUP["GROUP BY<br/>Create Row Groups<br/>Prepare for Aggregates"]
-        HAVING["HAVING<br/>Filter Groups<br/>Test Aggregate Conditions"]
+        GROUP["3. GROUP BY<br/>GROUP BY dept<br/>→ Group employees by department"]
+        HAVING["4. HAVING<br/>HAVING COUNT(*) > 10<br/>→ Keep only departments with >10 employees"]
     end
     
     subgraph "Phase 3: Output Formatting"
-        SELECT["SELECT<br/>Choose Columns<br/>Calculate Expressions"]
-        DISTINCT["DISTINCT<br/>Remove Duplicates<br/>Unique Results Only"]
-        ORDER["ORDER BY<br/>Sort Results<br/>Final Arrangement"]
-        LIMIT["LIMIT/OFFSET<br/>Restrict Rows<br/>Pagination"]
+        SELECT["5. SELECT<br/>SELECT dept, COUNT(*), AVG(salary)<br/>→ Choose columns and calculate aggregates"]
+        DISTINCT["6. DISTINCT<br/>(if DISTINCT specified)<br/>→ Remove duplicate rows"]
+        ORDER["7. ORDER BY<br/>ORDER BY COUNT(*) DESC<br/>→ Sort by employee count (highest first)"]
+        LIMIT["8. LIMIT<br/>LIMIT 5<br/>→ Return only top 5 departments"]
     end
     
-    RESULT([Final Result Set])
+    RESULT([Final Result:<br/>Top 5 departments with >10<br/>high-salary employees,<br/>sorted by employee count])
     
     FROM --> WHERE
     WHERE --> GROUP
