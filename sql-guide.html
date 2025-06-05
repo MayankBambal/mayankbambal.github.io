@@ -2,16 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
     <title>SQL Guide - Mayank Bambal</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
         .sql-guide-container {
-            max-width: 1200px;
+            max-width: 100vw;
             margin: 0 auto;
             padding: 20px;
             padding-top: 80px; /* Space for fixed nav */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
         }
 
         .chapter-nav {
@@ -40,6 +57,12 @@
             font-weight: 500;
             transition: all 0.3s ease;
             cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .chapter-nav-item:hover {
@@ -72,7 +95,7 @@
 
         .difficulty-selector {
             position: fixed;
-            right: 20px;
+            right: 15px;
             top: 50%;
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.95);
@@ -111,6 +134,10 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 44px;
+            min-width: 44px;
         }
 
         .difficulty-btn:hover {
@@ -143,9 +170,7 @@
         }
 
         .guide-content {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 0;
+            display: block;
             min-height: 500px;
         }
 
@@ -159,8 +184,29 @@
             top: 60px;
             width: 280px;
             overflow-y: auto;
+            overflow-x: hidden;
             z-index: 100;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: #999;
         }
 
         .sidebar h3 {
@@ -195,27 +241,27 @@
             background: #e9ecef;
         }
 
-        .chapter-toggle {
-            font-size: 0.8rem;
-            transition: transform 0.3s ease;
-        }
 
-        .chapter-section.collapsed .chapter-toggle {
-            transform: rotate(-90deg);
-        }
 
         .module-list {
             list-style: none;
             padding: 0;
             margin: 0;
-            max-height: 500px;
-            overflow: hidden;
+            max-height: none;
+            overflow: visible;
             transition: max-height 0.3s ease;
+        }
+
+        .module-list li::before {
+            content: none !important;
         }
 
         .chapter-section.collapsed .module-list {
             max-height: 0;
+            overflow: hidden;
         }
+
+
 
         .module-item {
             margin-bottom: 0;
@@ -233,6 +279,11 @@
             color: #666;
             transition: all 0.3s ease;
             font-size: 0.85rem;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
 
         .module-link:hover {
@@ -253,8 +304,12 @@
             padding: 30px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             min-height: 600px;
-            margin-left: 300px;
-            margin-right: 80px; /* Space for difficulty selector */
+            margin-left: calc(280px + 15px);
+            margin-right: 100px;
+            overflow-x: hidden;
+            word-wrap: break-word;
+            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
         }
 
         .content-area h1 {
@@ -312,6 +367,9 @@
             margin: 20px 0;
             font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
             font-size: 0.9rem;
+            max-width: 100%;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         .content-area code {
@@ -337,6 +395,8 @@
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            table-layout: auto;
         }
 
         .content-area th, .content-area td {
@@ -364,29 +424,102 @@
             font-size: 1.1rem;
         }
 
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            .content-area {
+                margin-right: 80px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .difficulty-selector {
+                right: 10px;
+                padding: 12px 6px;
+            }
+
+            .difficulty-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 0.75rem;
+            }
+
+            .content-area {
+                margin-right: 60px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 250px;
+            }
+
+            .content-area {
+                margin-left: calc(250px + 15px);
+                margin-right: 50px;
+                padding: 25px;
+            }
+
+            .guide-title {
+                font-size: 2rem;
+            }
+
+            .content-area h1 {
+                font-size: 1.75rem;
+            }
+
+            .content-area h2 {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .chapter-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 10px 15px;
+            }
+
+            .chapter-nav-item {
+                font-size: 0.9rem;
+                padding: 6px 16px;
+                margin: 2px;
+            }
+
+            .sql-guide-container {
+                padding-top: 90px;
+            }
+        }
+
         @media (max-width: 768px) {
             .sql-guide-container {
-                padding-top: 120px; /* More space for vertical nav on mobile */
+                padding: 15px;
+                padding-top: 140px;
             }
 
             .guide-content {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                display: block;
             }
 
             .chapter-nav {
                 position: fixed;
                 flex-direction: column;
-                gap: 10px;
-                padding: 15px 20px;
+                gap: 8px;
+                padding: 12px 15px;
                 height: auto;
+                flex-wrap: nowrap;
             }
 
             .chapter-nav-item {
                 margin: 0;
                 text-align: center;
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
+                font-size: 0.85rem;
+                padding: 8px 12px;
+            }
+
+            .guide-title {
+                font-size: 1.8rem;
             }
 
             .sidebar {
@@ -397,11 +530,24 @@
                 height: auto;
                 border-radius: 12px;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                margin-top: 20px;
+                margin: 20px 0;
+                max-height: 400px;
+                overflow-y: auto;
             }
 
             .sidebar h3 {
                 margin-top: 0;
+                font-size: 1rem;
+            }
+
+            .chapter-title {
+                font-size: 0.85rem;
+                padding: 10px 12px;
+            }
+
+            .module-link {
+                font-size: 0.8rem;
+                padding: 10px 12px;
             }
 
             .difficulty-selector {
@@ -411,17 +557,259 @@
                 transform: none;
                 flex-direction: row;
                 justify-content: center;
-                margin: 20px auto;
+                margin: 15px auto;
                 width: fit-content;
+                padding: 12px;
+                gap: 6px;
+            }
+
+            .difficulty-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 0.75rem;
+            }
+
+            .difficulty-label {
+                display: none;
             }
 
             .content-area {
-                margin-left: 0;
-                margin-right: 0;
+                margin: 0;
+                width: 100%;
+                max-width: 100%;
+                padding: 20px;
+                border-radius: 8px;
+                overflow-x: hidden;
+                word-break: break-word;
+            }
+
+            .content-area h1 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+
+            .content-area h2 {
+                font-size: 1.3rem;
+                margin-top: 25px;
+                margin-bottom: 12px;
+            }
+
+            .content-area h3 {
+                font-size: 1.1rem;
+                margin-top: 20px;
+                margin-bottom: 8px;
+            }
+
+            .content-area h4 {
+                font-size: 1rem;
+                margin-top: 15px;
+                margin-bottom: 6px;
+            }
+
+            .content-area p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+                margin-bottom: 12px;
+            }
+
+            .content-area pre {
+                padding: 12px;
+                font-size: 0.8rem;
+                overflow-x: auto;
+                border-radius: 6px;
+            }
+
+            .content-area code {
+                font-size: 0.8rem;
+                padding: 1px 4px;
+            }
+
+            .content-area table {
+                font-size: 0.85rem;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin: 15px 0;
+            }
+
+            .content-area th, .content-area td {
+                padding: 8px 10px;
+                font-size: 0.8rem;
             }
 
             .author-section {
-                margin-top: 40px !important;
+                margin-top: 30px !important;
+                padding: 20px;
+                margin: 30px 0 0 0;
+            }
+
+            .author-title {
+                font-size: 1.3rem;
+                margin-bottom: 8px;
+            }
+
+            .author-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+
+            .author-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sql-guide-container {
+                padding: 10px;
+                padding-top: 160px;
+            }
+
+            .chapter-nav {
+                padding: 10px;
+            }
+
+            .chapter-nav-item {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+                max-width: 250px;
+            }
+
+            .guide-title {
+                font-size: 1.5rem;
+            }
+
+            .sql-guide-header {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .difficulty-selector {
+                gap: 4px;
+                padding: 10px;
+            }
+
+            .difficulty-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.7rem;
+            }
+
+            .sidebar {
+                margin: 15px 0;
+                max-height: 350px;
+            }
+
+            .content-area {
+                padding: 15px;
+            }
+
+            .content-area h1 {
+                font-size: 1.3rem;
+            }
+
+            .content-area h2 {
+                font-size: 1.2rem;
+            }
+
+            .content-area h3 {
+                font-size: 1rem;
+            }
+
+            .content-area p {
+                font-size: 0.9rem;
+            }
+
+            .content-area pre {
+                padding: 10px;
+                font-size: 0.75rem;
+            }
+
+            .content-area table {
+                font-size: 0.8rem;
+            }
+
+            .content-area th, .content-area td {
+                padding: 6px 8px;
+                font-size: 0.75rem;
+            }
+
+            .author-section {
+                padding: 15px;
+                margin-top: 25px !important;
+            }
+
+            .author-title {
+                font-size: 1.2rem;
+            }
+
+            .author-btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .sql-guide-container {
+                padding: 8px;
+                padding-top: 180px;
+            }
+
+            .chapter-nav-item {
+                font-size: 0.75rem;
+                padding: 5px 8px;
+                max-width: 200px;
+            }
+
+            .guide-title {
+                font-size: 1.3rem;
+            }
+
+            .content-area {
+                padding: 12px;
+            }
+
+            .content-area h1 {
+                font-size: 1.2rem;
+            }
+
+            .content-area h2 {
+                font-size: 1.1rem;
+            }
+
+            .content-area p {
+                font-size: 0.85rem;
+            }
+
+            .author-section {
+                padding: 12px;
+            }
+        }
+
+        /* Landscape orientation for tablets */
+        @media (max-width: 1024px) and (orientation: landscape) {
+            .sql-guide-container {
+                padding-top: 70px;
+            }
+
+            .chapter-nav {
+                padding: 8px 15px;
+            }
+
+            .chapter-nav-item {
+                font-size: 0.85rem;
+                padding: 6px 14px;
+            }
+        }
+
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .content-area pre {
+                font-size: 0.85rem;
+            }
+
+            .content-area code {
+                font-size: 0.85rem;
             }
         }
 
@@ -481,7 +869,7 @@
     <div class="sql-guide-container">
         <nav class="chapter-nav">
             <div class="chapter-nav-item active" data-chapter="Chapter1">
-                📚 SQL Fundamentals
+                SQL Fundamentals
             </div>
             <!-- Add more chapters here as they become available -->
         </nav>
@@ -495,7 +883,7 @@
 
         <div class="guide-content">
             <nav class="sidebar">
-                <h3>📚 Contents</h3>
+                <h3>Contents</h3>
                 <div id="chapterList">
                     <!-- Chapters will be loaded dynamically -->
                 </div>
@@ -562,7 +950,6 @@
                     <div class="chapter-section" data-chapter="${chapterKey}">
                         <div class="chapter-title" onclick="this.parentElement.classList.toggle('collapsed')">
                             ${chapter.title}
-                            <span class="chapter-toggle">▼</span>
                         </div>
                         <ul class="module-list">
                             ${chapter.modules.map(module => `
@@ -579,18 +966,18 @@
             }
 
             formatModuleName(module) {
-                if (module === 'Introduction') return '🎯 Introduction';
+                if (module === 'Introduction') return 'Introduction';
                 const num = module.replace('Module', '');
                 const titles = {
-                    '1': 'FROM & JOINs',
-                    '2': 'WHERE Filtering', 
-                    '3': 'GROUP BY & Aggregates',
-                    '4': 'SELECT & Columns',
-                    '5': 'ORDER BY & Sorting',
-                    '6': 'HAVING & Group Filters',
-                    '7': 'Advanced Queries'
+                    '1': 'Getting Your Data - FROM & JOINs',
+                    '2': 'Filtering Your Data - WHERE Clause', 
+                    '3': 'Grouping and Counting - GROUP BY',
+                    '4': 'Filtering Groups - HAVING Clause',
+                    '5': 'Choosing Your Output - SELECT Clause',
+                    '6': 'Sorting Your Results - ORDER BY',
+                    '7': 'Getting Just What You Need - LIMIT'
                 };
-                return `📝 ${num}. ${titles[num] || 'SQL Concepts'}`;
+                return `${num}. ${titles[num] || 'SQL Concepts'}`;
             }
 
             async loadContent(chapter, module) {
